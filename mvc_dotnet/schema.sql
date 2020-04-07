@@ -37,6 +37,7 @@ memberName varchar(50) not null,
 email varchar(50) not null,
 workoutGoals varchar(50) not null,
 workoutProfile varchar(50) not null,
+photoPath varchar(50),
 
 constraint pk_member_details primary key (memberId)
 --constraint fk_member_user_id foreign key (userId) references users(id)

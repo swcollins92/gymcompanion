@@ -36,7 +36,7 @@ namespace WebApplication.Web.Providers.Auth
                 user.Salt = newHash.Salt;
                 
                 userDAL.UpdateUser(user);
-
+                
                 return true;
             }
 
@@ -88,12 +88,12 @@ namespace WebApplication.Web.Providers.Auth
                 Salt = passwordHash.Salt,
                 Role = role
             };
-
+            
             userDAL.CreateUser(user);
             Session.SetString(SessionKey, user.Username);
         }
 
-
+        
 
         public void LogOff()
         {

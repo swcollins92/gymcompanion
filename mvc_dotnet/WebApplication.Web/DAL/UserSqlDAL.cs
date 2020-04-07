@@ -44,18 +44,20 @@ namespace WebApplication.Web.DAL
             }
         }
 
-        public void AddGymMember(GymMember member)
+        public void AddGymMember (GymMember member)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Member_Details VALUES (@username, @password, @salt, @role);", conn);
-                    cmd.Parameters.AddWithValue("@username", user.Username);
-                    cmd.Parameters.AddWithValue("@password", user.Password);
-                    cmd.Parameters.AddWithValue("@salt", user.Salt);
-                    cmd.Parameters.AddWithValue("@role", user.Role);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Member_Details VALUES (@user_id, @member_name, @email, @workout_goals, @workout_profile, @photo_path);", conn);
+                    cmd.Parameters.AddWithValue("@user_id", 1);
+                    cmd.Parameters.AddWithValue("@member_name", member.Name);
+                    cmd.Parameters.AddWithValue("@email", member.Email);
+                    cmd.Parameters.AddWithValue("@workout_goals", member.WorkoutGoals);
+                    cmd.Parameters.AddWithValue("@workout_profile", member.WorkoutProfile);
+                    cmd.Parameters.AddWithValue("@photo_path", member.PhotoPath);
 
                     cmd.ExecuteNonQuery();
 
