@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication.Web.Models;
+using WebApplication.Web.Models.Account;
 
 namespace WebApplication.Web.Providers.Auth
 {
@@ -16,7 +17,7 @@ namespace WebApplication.Web.Providers.Auth
 
         bool ChangePassword(string existingPassword, string newPassword);
 
-        void Register(string username, string password, string role);
+        void Register(RegisterViewModel model);
 
         bool UserHasRole(string[] roles);
 

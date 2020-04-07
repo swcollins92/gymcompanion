@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using WebApplication.Web.Models;
 using Microsoft.AspNetCore.Http;
 using WebApplication.Web.DAL;
+using WebApplication.Web.Models.Account;
 
 namespace WebApplication.Web.Providers.Auth
 {
@@ -14,7 +15,7 @@ namespace WebApplication.Web.Providers.Auth
         private readonly IUserDAL userDAL;
         private static string SessionKey = "Auth_User";
 
-        public SessionAuthProvider (IHttpContextAccessor contextAccessor, IUserDAL userDAL)
+        public SessionAuthProvider(IHttpContextAccessor contextAccessor, IUserDAL userDAL)
         {
             this.contextAccessor = contextAccessor;
             this.userDAL = userDAL;
@@ -34,9 +35,9 @@ namespace WebApplication.Web.Providers.Auth
                 var newHash = hashProvider.HashPassword(newPassword);
                 user.Password = newHash.Password;
                 user.Salt = newHash.Salt;
-                
+
                 userDAL.UpdateUser(user);
-                
+
                 return true;
             }
 
@@ -86,25 +87,41 @@ namespace WebApplication.Web.Providers.Auth
                 roles.Any(r => r.ToLower() == user.Role.ToLower());
         }
 
-        public void Register(string username, string password, string role)
+        public void Register(RegisterViewModel model)
         {
+            model.Username = "needs to be replaced";
             var hashProvider = new HashProvider();
-            var passwordHash = hashProvider.HashPassword(password);
+            var passwordHash = hashProvider.HashPassword(model.Password);
 
             var user = new User
             {
-                Username = username,
+                Username = model.Username,
                 Password = passwordHash.Password,
                 Salt = passwordHash.Salt,
-                Role = role
+                Role = model.Role
             };
-            
-            userDAL.CreateUser(user);
-            
-            Session.SetString(SessionKey, user.Username);
+
+            int userId = userDAL.CreateUser(user);
+
+            var gymMember = new GymMember
+            {
+                Name = model.Name,
+
+                Email = model.Email,
+
+                WorkoutGoals = model.WorkoutGoals,
+                WorkoutProfile = model.WorkoutProfile,
+
+                PhotoPath = model.PhotoPath
+            };
+
+            userDAL.AddGymMember(gymMember, userId);
+
+
+           Session.SetString(SessionKey, model.Username);
         }
 
-        
+
 
         public void LogOff()
         {

@@ -20,39 +20,53 @@ namespace WebApplication.Web.DAL
         /// Saves the user to the database.
         /// </summary>
         /// <param name="user"></param>
-        public void CreateUser(User user)
+        public int CreateUser(User user)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO users VALUES (@username, @password, @salt, @role);", conn);
-                    cmd.Parameters.AddWithValue("@username", user.Username);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO users VALUES (@username, @password, @salt, @role) SELECT scope_identity() as id;", conn);
+                    cmd.Parameters.AddWithValue("@username", "Please replace username holding value");
                     cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@salt", user.Salt);
-                    cmd.Parameters.AddWithValue("@role", user.Role);
+                    cmd.Parameters.AddWithValue("@role", "Placeholder Role value");
+                    int getId =0;
 
-                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
 
-                    return;
+                    // Call Read before accessing data.
+                    while (reader.Read())
+                    {
+                         getId = Convert.ToInt32(reader["id"]);
+                        
+                    }
+                    // Call Close when done reading.
+                    reader.Close();
+
+
+
+                    return getId;
                 }
             }
             catch(SqlException ex)
             {
-                throw ex;
+                throw;
+               
             }
         }
 
-        public void AddGymMember (GymMember member)
+        public void AddGymMember (GymMember member, int userId)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Member_Details VALUES (@user_id, @member_name, @email, @workout_goals, @workout_profile, @photo_path);", conn);
-                    cmd.Parameters.AddWithValue("@user_id", 1);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Member_Details (userId,memberName,email,workoutGoals,workoutProfile, photoPath) " +
+                        "VALUES (@user_id, @member_name, @email, @workout_goals, @workout_profile, @photo_path);", conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
                     cmd.Parameters.AddWithValue("@member_name", member.Name);
                     cmd.Parameters.AddWithValue("@email", member.Email);
                     cmd.Parameters.AddWithValue("@workout_goals", member.WorkoutGoals);
@@ -127,7 +141,7 @@ namespace WebApplication.Web.DAL
             }            
         }
 
-        //public GymMember GetMember (string email)
+        //public GymMember GetMember(string email)
         //{
         //    GymMember member = new GymMember();
 

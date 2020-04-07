@@ -19,7 +19,7 @@ namespace WebApplication.Web.DAL
         /// Creates a new user.
         /// </summary>
         /// <param name="user"></param>
-        void CreateUser(User user);
+        int CreateUser(User user);
 
         /// <summary>
         /// Updates a user.
@@ -33,6 +33,6 @@ namespace WebApplication.Web.DAL
         /// <param name="user"></param>
         void DeleteUser(User user);
 
-        void AddGymMember(GymMember member);
+        void AddGymMember(GymMember member, int UserId);
     }
 }

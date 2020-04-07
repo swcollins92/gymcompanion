@@ -7,6 +7,8 @@ namespace WebApplication.Web.Models.Account
 {
     public class RegisterViewModel
     {
+        public string Username { get; set; }
+
         public string Email { get; set; }
 
         public string Password { get; set; }
@@ -20,5 +22,7 @@ namespace WebApplication.Web.Models.Account
         public string PhotoPath { get; set; }
 
         public string Name { get; set; }
+
+        public string Role { get; set; }
     }
 }

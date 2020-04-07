@@ -79,7 +79,7 @@ namespace WebApplication.Web.Controllers
                 // Register them as a new user (and set default role)
                 // When a user registeres they need to be given a role. If you don't need anything special
                 // just give them "User".
-                authProvider.Register(registerViewModel.Email, registerViewModel.Password, role: "Member");
+                authProvider.Register(registerViewModel);
 
                 // Redirect the user where you want them to go after registering
                 return RedirectToAction("Register", "Account");
@@ -88,24 +88,24 @@ namespace WebApplication.Web.Controllers
             return View(registerViewModel);
         }
 
-        [HttpGet]
-        public IActionResult GymMember()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult GymMember()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult GymMember(GymMember model)
-        {
-            if (ModelState.IsValid)
-            {
-                userDAL.AddGymMember(model);
-                return RedirectToAction("Register", "Account");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult GymMember(GymMember model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        userDAL.AddGymMember(model);
+        //        return RedirectToAction("Register", "Account");
+        //    }
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
         [HttpGet]
         public IActionResult Profile(GymMember model)
