@@ -55,6 +55,16 @@ namespace WebApplication.Web.Providers.Auth
             return null;
         }
 
+        //public GymMember GetGymMember()
+        //{
+        //    var email = Session.GetString(SessionKey);
+
+        //    if (!String.IsNullOrEmpty(email))
+        //    {
+
+        //    }
+        //}
+
         public bool SignIn(string username, string password)
         {
             var user = userDAL.GetUser(username);
@@ -90,6 +100,7 @@ namespace WebApplication.Web.Providers.Auth
             };
             
             userDAL.CreateUser(user);
+            
             Session.SetString(SessionKey, user.Username);
         }
 

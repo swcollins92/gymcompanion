@@ -82,7 +82,7 @@ namespace WebApplication.Web.Controllers
                 authProvider.Register(registerViewModel.Email, registerViewModel.Password, role: "Member");
 
                 // Redirect the user where you want them to go after registering
-                return RedirectToAction("GymMember", "Account");
+                return RedirectToAction("Register", "Account");
             }
 
             return View(registerViewModel);
@@ -104,6 +104,12 @@ namespace WebApplication.Web.Controllers
                 return RedirectToAction("Register", "Account");
             }
 
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Profile(GymMember model)
+        {
             return View(model);
         }
     }

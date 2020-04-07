@@ -127,6 +127,34 @@ namespace WebApplication.Web.DAL
             }            
         }
 
+        //public GymMember GetMember (string email)
+        //{
+        //    GymMember member = new GymMember();
+
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(connectionString))
+        //        {
+        //            conn.Open();
+        //            SqlCommand cmd = new SqlCommand("SELECT * FROM USERS WHERE email = @email;", conn);
+        //            cmd.Parameters.AddWithValue("@email", email);
+
+        //            SqlDataReader reader = cmd.ExecuteReader();
+
+        //            if (reader.Read())
+        //            {
+        //                member = MapRowToMember(reader);
+        //            }
+        //        }
+
+        //        return member;
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
         /// <summary>
         /// Updates the user in the database.
         /// </summary>
@@ -156,6 +184,18 @@ namespace WebApplication.Web.DAL
         }
 
         private User MapRowToUser(SqlDataReader reader)
+        {
+            return new User()
+            {
+                Id = Convert.ToInt32(reader["id"]),
+                Username = Convert.ToString(reader["username"]),
+                Password = Convert.ToString(reader["password"]),
+                Salt = Convert.ToString(reader["salt"]),
+                Role = Convert.ToString(reader["role"])
+            };
+        }
+
+        private User MapRowToMember(SqlDataReader reader)
         {
             return new User()
             {

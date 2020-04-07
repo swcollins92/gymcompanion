@@ -12,5 +12,13 @@ namespace WebApplication.Web.Models.Account
         public string Password { get; set; }
 
         public string ConfirmPassword { get; set; }
+
+        public string WorkoutGoals { get; set; }
+
+        public string WorkoutProfile { get; set; }
+
+        public string PhotoPath { get; set; }
+
+        public string Name { get; set; }
     }
 }

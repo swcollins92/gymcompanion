@@ -9,9 +9,11 @@
 {
     <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
     <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+
 }
 else
 {
     <li><a asp-area="" asp-controller="Account" asp-action="Index">Welcome @Model.Username</a></li>
+    <li><a asp-controller="Account" asp-action="Profile">View Profile</a></li>
     <li><a asp-area="" asp-controller="Account" asp-action="Logoff">Logout</a></li>
 }

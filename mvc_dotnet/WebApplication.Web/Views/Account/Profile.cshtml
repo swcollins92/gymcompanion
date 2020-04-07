@@ -1,0 +1,15 @@
+﻿@model WebApplication.Web.Models.Account.RegisterViewModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h2>Member Profile Information</h2>
+
+<ul>
+    <li>Name: @Model.Name</li>
+    <li>Workout Goals: @Model.WorkoutGoals</li>
+    <li>Workout Profile: @Model.WorkoutProfile</li>
+    <li>Photo: @Model.PhotoPath</li>
+    <li>Password: @Model.Password</li>
+</ul>
+
