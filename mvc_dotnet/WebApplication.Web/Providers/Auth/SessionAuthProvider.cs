@@ -93,6 +93,8 @@ namespace WebApplication.Web.Providers.Auth
             Session.SetString(SessionKey, user.Username);
         }
 
+
+
         public void LogOff()
         {
             Session.Clear();

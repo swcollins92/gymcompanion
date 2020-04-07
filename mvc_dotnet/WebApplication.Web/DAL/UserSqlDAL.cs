@@ -44,6 +44,30 @@ namespace WebApplication.Web.DAL
             }
         }
 
+        public void AddGymMember(GymMember member)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Member_Details VALUES (@username, @password, @salt, @role);", conn);
+                    cmd.Parameters.AddWithValue("@username", user.Username);
+                    cmd.Parameters.AddWithValue("@password", user.Password);
+                    cmd.Parameters.AddWithValue("@salt", user.Salt);
+                    cmd.Parameters.AddWithValue("@role", user.Role);
+
+                    cmd.ExecuteNonQuery();
+
+                    return;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+
         /// <summary>
         /// Deletes the user from the database.
         /// </summary>
