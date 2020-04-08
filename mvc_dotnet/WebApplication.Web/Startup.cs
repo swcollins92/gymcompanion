@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebApplication.Web.DAL;
+using WebApplication.Web.Models.Account;
 using WebApplication.Web.Providers.Auth;
 
 namespace WebApplication.Web
@@ -58,7 +59,11 @@ namespace WebApplication.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+<<<<<<< HEAD
             
+=======
+            CreateAdminAndEmployee();
+>>>>>>> b31460b9a0dcf54ebce736f857ab38ecdfe4790d
 
             if (env.IsDevelopment())
             {
@@ -82,7 +87,24 @@ namespace WebApplication.Web
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+<<<<<<< HEAD
        
 
         }
+=======
+
+        private void CreateAdminAndEmployee()
+        {
+            RegisterViewModel user = new RegisterViewModel();
+            user.Username = "ArashSZ";
+            user.Password = "Developer";
+            user.ConfirmPassword = "Developer";
+            user.Email = "arash@yahoo.com";
+            user.WorkoutGoals = "lose weight";
+            user.WorkoutProfile = "buff";
+            user.Name = "rush";
+            user.Role = "Admin";
+        }
+    }
+>>>>>>> b31460b9a0dcf54ebce736f857ab38ecdfe4790d
 }
