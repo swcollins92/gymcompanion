@@ -59,11 +59,9 @@ namespace WebApplication.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-<<<<<<< HEAD
-            
-=======
+
             CreateAdminAndEmployee();
->>>>>>> b31460b9a0dcf54ebce736f857ab38ecdfe4790d
+
 
             if (env.IsDevelopment())
             {
@@ -87,11 +85,11 @@ namespace WebApplication.Web
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-<<<<<<< HEAD
+
        
 
-        }
-=======
+        
+
 
         private void CreateAdminAndEmployee()
         {
@@ -106,5 +104,5 @@ namespace WebApplication.Web
             user.Role = "Admin";
         }
     }
->>>>>>> b31460b9a0dcf54ebce736f857ab38ecdfe4790d
+
 }
