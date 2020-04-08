@@ -43,4 +43,5 @@ constraint pk_member_details primary key (memberId)
 --constraint fk_member_user_id foreign key (userId) references users(id)
 );
 
+INSERT INTO users (username, password, salt, role) VALUES ('arash', 'x4dbae/fWb1u5kZ1z5hhaKiMf7Q=', 'veeN6byI+yk=', 'Admin');
 COMMIT TRANSACTION;
