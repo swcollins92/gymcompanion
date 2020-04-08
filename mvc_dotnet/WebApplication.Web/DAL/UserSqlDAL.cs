@@ -28,10 +28,10 @@ namespace WebApplication.Web.DAL
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO users VALUES (@username, @password, @salt, @role) SELECT scope_identity() as id;", conn);
-                    cmd.Parameters.AddWithValue("@username", "Please replace username holding value");
+                    cmd.Parameters.AddWithValue("@username", user.Username);
                     cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@salt", user.Salt);
-                    cmd.Parameters.AddWithValue("@role", "Placeholder Role value");
+                    cmd.Parameters.AddWithValue("@role", "member");
                     int getId =0;
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -137,37 +137,37 @@ namespace WebApplication.Web.DAL
             }
             catch (SqlException ex)
             {
-                throw ex;
+                throw;
             }            
         }
 
-        //public GymMember GetMember(string email)
-        //{
-        //    GymMember member = new GymMember();
+        public GymMember GetMember(int userId)
+        {
+            GymMember member = new GymMember();
 
-        //    try
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(connectionString))
-        //        {
-        //            conn.Open();
-        //            SqlCommand cmd = new SqlCommand("SELECT * FROM USERS WHERE email = @email;", conn);
-        //            cmd.Parameters.AddWithValue("@email", email);
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM member_details WHERE userId = @userId;", conn);
+                    cmd.Parameters.AddWithValue("@userId", userId);
 
-        //            SqlDataReader reader = cmd.ExecuteReader();
+                    SqlDataReader reader = cmd.ExecuteReader();
 
-        //            if (reader.Read())
-        //            {
-        //                member = MapRowToMember(reader);
-        //            }
-        //        }
+                    if (reader.Read())
+                    {
+                        member = MapRowToMember(reader);
+                    }
+                }
 
-        //        return member;
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
+                return member;
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
 
         /// <summary>
         /// Updates the user in the database.
@@ -193,7 +193,32 @@ namespace WebApplication.Web.DAL
             }
             catch (SqlException ex)
             {
-                throw ex;
+                throw;
+            }
+        }
+
+        public void UpdateGymMember(EditViewModel model, int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("UPDATE Member_Details SET email = @email, workoutGoals = @workoutGoals, workoutProfile = @workoutProfile, photoPath = @photoPath WHERE userId = @id;", conn);
+                    cmd.Parameters.AddWithValue("@email", model.Email);
+                    cmd.Parameters.AddWithValue("@workoutGoals", model.WorkoutGoals);
+                    cmd.Parameters.AddWithValue("@workoutProfile", model.WorkoutProfile);
+                    cmd.Parameters.AddWithValue("@photoPath", model.PhotoPath);
+                    cmd.Parameters.AddWithValue("@id", userId);
+
+                    cmd.ExecuteNonQuery();
+
+                    return;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
             }
         }
 
@@ -209,15 +234,15 @@ namespace WebApplication.Web.DAL
             };
         }
 
-        private User MapRowToMember(SqlDataReader reader)
+        private GymMember MapRowToMember(SqlDataReader reader)
         {
-            return new User()
+            return new GymMember()
             {
-                Id = Convert.ToInt32(reader["id"]),
-                Username = Convert.ToString(reader["username"]),
-                Password = Convert.ToString(reader["password"]),
-                Salt = Convert.ToString(reader["salt"]),
-                Role = Convert.ToString(reader["role"])
+                Name = Convert.ToString(reader["memberName"]),
+                Email = Convert.ToString(reader["email"]),
+                WorkoutGoals = Convert.ToString(reader["workoutGoals"]),
+                WorkoutProfile = Convert.ToString(reader["workoutProfile"]),
+                PhotoPath = Convert.ToString(reader["photoPath"]),
             };
         }
     }

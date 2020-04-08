@@ -34,5 +34,9 @@ namespace WebApplication.Web.DAL
         void DeleteUser(User user);
 
         void AddGymMember(GymMember member, int UserId);
+
+        GymMember GetMember(int userId);
+
+        void UpdateGymMember(EditViewModel model, int userId);
     }
 }

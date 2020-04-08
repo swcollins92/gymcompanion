@@ -56,15 +56,24 @@ namespace WebApplication.Web.Providers.Auth
             return null;
         }
 
-        //public GymMember GetGymMember()
-        //{
-        //    var email = Session.GetString(SessionKey);
+        public EditViewModel GetEditMember()
+        {
+            var username = Session.GetString(SessionKey);
+            EditViewModel model = new EditViewModel();
 
-        //    if (!String.IsNullOrEmpty(email))
-        //    {
+            if (!String.IsNullOrEmpty(username))
+            {
+                User currentUser = GetCurrentUser();
+                GymMember member = userDAL.GetMember(currentUser.Id);
+                model.Email = member.Email;
+                model.WorkoutGoals = member.WorkoutGoals;
+                model.WorkoutProfile = member.WorkoutProfile;
+                model.PhotoPath = member.PhotoPath;
+                model.Password = currentUser.Password;
+            }
 
-        //    }
-        //}
+            return model;
+        }
 
         public bool SignIn(string username, string password)
         {
@@ -89,7 +98,6 @@ namespace WebApplication.Web.Providers.Auth
 
         public void Register(RegisterViewModel model)
         {
-            model.Username = "needs to be replaced";
             var hashProvider = new HashProvider();
             var passwordHash = hashProvider.HashPassword(model.Password);
 
@@ -116,13 +124,10 @@ namespace WebApplication.Web.Providers.Auth
             };
 
             userDAL.AddGymMember(gymMember, userId);
-
-
+            
            Session.SetString(SessionKey, model.Username);
         }
-
-
-
+        
         public void LogOff()
         {
             Session.Clear();

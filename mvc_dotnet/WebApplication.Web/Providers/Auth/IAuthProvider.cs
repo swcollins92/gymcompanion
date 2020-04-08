@@ -22,5 +22,7 @@ namespace WebApplication.Web.Providers.Auth
         bool UserHasRole(string[] roles);
 
         void LogOff();
+
+        EditViewModel GetEditMember();
     }
 }

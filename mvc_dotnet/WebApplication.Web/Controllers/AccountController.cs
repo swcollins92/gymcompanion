@@ -82,35 +82,34 @@ namespace WebApplication.Web.Controllers
                 authProvider.Register(registerViewModel);
 
                 // Redirect the user where you want them to go after registering
-                return RedirectToAction("Register", "Account");
+                return RedirectToAction("Profile", "Account");
             }
 
             return View(registerViewModel);
         }
 
-        //[HttpGet]
-        //public IActionResult GymMember()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult GymMember(GymMember model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        userDAL.AddGymMember(model);
-        //        return RedirectToAction("Register", "Account");
-        //    }
-
-        //    return View(model);
-        //}
-
         [HttpGet]
-        public IActionResult Profile(GymMember model)
+        public IActionResult Profile()
         {
+            User currentUser = authProvider.GetCurrentUser();
+            GymMember model = userDAL.GetMember(currentUser.Id);
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            EditViewModel model = authProvider.GetEditMember();
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditViewModel model)
+        {
+            User currentUser = authProvider.GetCurrentUser();
+            userDAL.UpdateGymMember(model, currentUser.Id);
+            return RedirectToAction("Profile", "Account");
+        }
+        
     }
 }

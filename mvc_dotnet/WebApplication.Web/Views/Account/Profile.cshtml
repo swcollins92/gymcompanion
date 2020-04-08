@@ -1,4 +1,4 @@
-﻿@model WebApplication.Web.Models.Account.RegisterViewModel
+﻿@model WebApplication.Web.Models.GymMember
 @{
     ViewData["Title"] = "Profile";
 }
@@ -7,9 +7,10 @@
 
 <ul>
     <li>Name: @Model.Name</li>
+    <li> Email: @Model.Email</li>
     <li>Workout Goals: @Model.WorkoutGoals</li>
     <li>Workout Profile: @Model.WorkoutProfile</li>
     <li>Photo: @Model.PhotoPath</li>
-    <li>Password: @Model.Password</li>
 </ul>
 
+<input type="button" class="btn btn-default" value="Edit the profile" onclick="window.location= '@Url.Action( "Edit", "Account")'" />
