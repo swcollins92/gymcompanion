@@ -21,7 +21,7 @@ namespace WebApplication.Web.Models.Account
         public string WorkoutProfile { get; set; }
 
         [Display(Name = "PhotoPath")]
-        public byte[] PhotoPath { get; set; }
+        public string PhotoPath { get; set; }
 
         public string Name { get; set; }
 

@@ -243,7 +243,7 @@ namespace WebApplication.Web.DAL
                 WorkoutGoals = Convert.ToString(reader["workoutGoals"]),
                 WorkoutProfile = Convert.ToString(reader["workoutProfile"]),
                 //TODO: Convert to byte
-                //PhotoPath = Convert.ToByte[](reader["photoPath"]),
+                PhotoPath = Convert.ToString(reader["photoPath"]),
             };
         }
     }

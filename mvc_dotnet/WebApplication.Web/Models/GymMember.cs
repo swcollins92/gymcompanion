@@ -15,7 +15,7 @@ namespace WebApplication.Web.Models
 
         public string WorkoutProfile { get; set; }
 
-        public byte[] PhotoPath { get; set; }
+        public string PhotoPath { get; set; }
 
         
 
