@@ -14,11 +14,13 @@ namespace WebApplication.Web.Controllers
     public class MemberInfoController : Controller
     {
         private readonly IGymDAL gymDAL;
+        private readonly IMemberDAL memberDAL;
         private readonly IAuthProvider authProvider;
-        public MemberInfoController(IAuthProvider authProvider, IGymDAL gymDAL)
+        public MemberInfoController (IAuthProvider authProvider, IGymDAL gymDAL, IMemberDAL memberDAL)
         {
             this.authProvider = authProvider;
             this.gymDAL = gymDAL;
+            this.memberDAL = memberDAL;
         }
 
         public IActionResult Index()
@@ -39,16 +41,33 @@ namespace WebApplication.Web.Controllers
             if (ModelState.IsValid)
             {
                 gymDAL.EditSchedule(model);
-                return RedirectToAction(nameof(ViewSchedule));
+                return RedirectToAction(nameof(ViewSchedules));
             }
 
             return View(model);
         }
 
+        
         [HttpGet]
-        public IActionResult ViewSchedule()
+        public IActionResult ViewSchedules()
         {
+            ViewScheduleModel model = new ViewScheduleModel();
+            model.AllSchedules = gymDAL.GetSchedules();
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Timelog()
+        {
+            User user = authProvider.GetCurrentUser();
+            if (user != null)
+            {
+                memberDAL.CheckIn(user.Id);
+            }
+
             return View();
         }
+
+
     }
 }

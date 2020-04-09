@@ -52,5 +52,16 @@ date datetime not null,
 
 constraint pk_schedule primary key (id)
 );
+
+CREATE TABLE Member_Timelog
+(
+id int not null identity (1, 1),
+member_id int not null,
+check_in datetime,
+check_out datetime
+
+constraint pk_member_timelog primary key (id)
+)
+
 INSERT INTO users (username, password, salt, role) VALUES ('arash', 'x4dbae/fWb1u5kZ1z5hhaKiMf7Q=', 'veeN6byI+yk=', 'Admin');
 COMMIT TRANSACTION;

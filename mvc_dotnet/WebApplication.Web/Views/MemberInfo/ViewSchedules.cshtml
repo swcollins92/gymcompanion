@@ -1,0 +1,31 @@
+﻿@model WebApplication.Web.Models.GymDetails.ViewScheduleModel
+
+@{
+    ViewData["Title"] = "ViewSchedules";
+}
+
+<h2>ViewSchedules</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var schedule in Model.AllSchedules) {
+        <tr>
+            <td>
+                @schedule.Name
+                @schedule.Description
+                @schedule.Date
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

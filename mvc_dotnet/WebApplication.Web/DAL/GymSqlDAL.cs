@@ -29,7 +29,7 @@ namespace WebApplication.Web.DAL
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO Schedule (name,description,date) " +
                         "VALUES (@name, @description, @date )",conn);
-                    cmd.Parameters.AddWithValue("@name", schedule.name);
+                    cmd.Parameters.AddWithValue("@name", schedule.Name);
                     cmd.Parameters.AddWithValue("@description", schedule.Description);
                     cmd.Parameters.AddWithValue("@date", schedule.Date);
 
@@ -47,7 +47,40 @@ namespace WebApplication.Web.DAL
 
         public List<EditSchedule> GetSchedules()
         {
-            throw new NotImplementedException();
+            List<EditSchedule> list = new List<EditSchedule>();
+            EditSchedule result = new EditSchedule();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("Select * From Schedule ", conn);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    
+                    while (reader.Read())
+                    {
+                        result = MapRowToschedule(reader);
+                        list.Add(result);
+                    }
+
+                    return list;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+
+        private EditSchedule MapRowToschedule(SqlDataReader reader)
+        {
+            return new EditSchedule()
+            {
+                Name = Convert.ToString(reader["name"]),
+                Description = Convert.ToString(reader["description"]),
+                Date = Convert.ToDateTime(reader["date"]),
+            };
         }
     }
 }

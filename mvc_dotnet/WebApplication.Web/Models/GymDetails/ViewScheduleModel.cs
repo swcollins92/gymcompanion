@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication.Web.Models.GymDetails;
 
 namespace WebApplication.Web.Models.GymDetails
 {
-    public class EditSchedule
+    public class ViewScheduleModel
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public DateTime Date { get; set; }
+        public List<EditSchedule> AllSchedules { get; set; }
     }
 }
