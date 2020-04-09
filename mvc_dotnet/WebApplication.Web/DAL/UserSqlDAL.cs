@@ -31,7 +31,7 @@ namespace WebApplication.Web.DAL
                     cmd.Parameters.AddWithValue("@username", user.Username);
                     cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@salt", user.Salt);
-                    cmd.Parameters.AddWithValue("@role", String.IsNullOrEmpty(user.Role) ? "User" : user.Role);
+                    cmd.Parameters.AddWithValue("@role", user.Role);
                     int getId =0;
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -80,7 +80,7 @@ namespace WebApplication.Web.DAL
             }
             catch (SqlException ex)
             {
-                throw ex;
+                throw;
             }
         }
 

@@ -21,7 +21,7 @@ namespace WebApplication.Web.Controllers
         }
 
         //[AuthorizationFilter] // actions can be filtered to only those that are logged in
-        [AuthorizationFilter("Admin", "Author", "Manager", "User")]  //<-- or filtered to only those that have a certain role
+        [AuthorizationFilter("Admin", "Author", "Member", "Employee", "User")]  //<-- or filtered to only those that have a certain role
         [HttpGet]
         public IActionResult Index()
         {
@@ -47,7 +47,8 @@ namespace WebApplication.Web.Controllers
                 if (validLogin)
                 {
                     // Redirect the user where you want them to go after successful login
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Account");
+
                 }
             }
 
@@ -79,8 +80,15 @@ namespace WebApplication.Web.Controllers
                 // Register them as a new user (and set default role)
                 // When a user registeres they need to be given a role. If you don't need anything special
                 // just give them "User".
-                authProvider.Register(registerViewModel);
-
+                User user = authProvider.GetCurrentUser();
+                if (user != null && user.Role == "Admin")
+                {
+                    authProvider.Register(registerViewModel, "Employee");
+                }
+                else
+                {
+                    authProvider.Register(registerViewModel, "Member");
+                }
                 // Redirect the user where you want them to go after registering
                 return RedirectToAction("Profile", "Account");
             }
@@ -110,8 +118,31 @@ namespace WebApplication.Web.Controllers
             userDAL.UpdateGymMember(model, currentUser.Id);
             return RedirectToAction("Profile", "Account");
         }
-        
 
+        [AuthorizationFilter("Admin")]
+        [HttpGet]
+        public IActionResult AdminRegister()
+        {
+            return View();
+        }
 
+        [AuthorizationFilter("Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AdminRegister(RegisterViewModel registerViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                // Register them as a new user (and set default role)
+                // When a user registeres they need to be given a role. If you don't need anything special
+                // just give them "User".
+                authProvider.Register(registerViewModel, "Employee");
+
+                // Redirect the user where you want them to go after registering
+                return RedirectToAction("Profile", "Account");
+            }
+
+            return View(registerViewModel);
+        }
     }
 }

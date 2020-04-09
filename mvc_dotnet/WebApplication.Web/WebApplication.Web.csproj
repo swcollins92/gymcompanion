@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Gym\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
 
