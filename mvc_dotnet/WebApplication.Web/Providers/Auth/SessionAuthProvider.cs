@@ -97,7 +97,7 @@ namespace WebApplication.Web.Providers.Auth
                 roles.Any(r => r.ToLower() == user.Role.ToLower());
         }
 
-        public void Register(RegisterViewModel model)
+        public void Register(RegisterViewModel model, string role)
         {
             var hashProvider = new HashProvider();
             var passwordHash = hashProvider.HashPassword(model.Password);
@@ -107,7 +107,7 @@ namespace WebApplication.Web.Providers.Auth
                 Username = model.Username,
                 Password = passwordHash.Password,
                 Salt = passwordHash.Salt,
-                Role = model.Role
+                Role = role
             };
 
             int userId = userDAL.CreateUser(user);

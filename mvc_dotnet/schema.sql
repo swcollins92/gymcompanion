@@ -43,5 +43,14 @@ constraint pk_member_details primary key (memberId)
 --constraint fk_member_user_id foreign key (userId) references users(id)
 );
 
+CREATE TABLE Schedule 
+(
+id int not null identity (1, 1),
+name varchar (50) not null,
+description varchar(250),
+date datetime not null,
+
+constraint pk_schedule primary key (id)
+);
 INSERT INTO users (username, password, salt, role) VALUES ('arash', 'x4dbae/fWb1u5kZ1z5hhaKiMf7Q=', 'veeN6byI+yk=', 'Admin');
 COMMIT TRANSACTION;

@@ -17,7 +17,7 @@ namespace WebApplication.Web.Providers.Auth
 
         bool ChangePassword(string existingPassword, string newPassword);
 
-        void Register(RegisterViewModel model);
+        void Register(RegisterViewModel model, string role);
 
         bool UserHasRole(string[] roles);
 
