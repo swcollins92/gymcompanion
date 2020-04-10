@@ -79,7 +79,7 @@ namespace WebApplication.Web.Controllers
                 memberDAL.CheckIn(id);
             }
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(MemberTimelog));
         }
 
         [HttpGet]
@@ -90,7 +90,13 @@ namespace WebApplication.Web.Controllers
                 memberDAL.CheckOut(id);
             }
             
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(MemberTimelog));
         }
+
+        //[HttpGet]
+        //public IActionResult LogInSummary()
+        //{
+
+        //}
     }
 }
