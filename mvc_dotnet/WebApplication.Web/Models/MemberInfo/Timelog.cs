@@ -10,5 +10,6 @@ namespace WebApplication.Web.Models.MemberInfo
         public int MemberId { get; set; }
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
+        public bool IsCheckedIn { get; set; }
     }
 }
