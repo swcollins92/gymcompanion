@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication.Web.Models;
 
 namespace WebApplication.Web.DAL
 {
@@ -63,20 +65,20 @@ namespace WebApplication.Web.DAL
             }
         }
 
-        public bool CheckedInStatus (int id)
+        public bool CheckedInStatusButNotCheckedOut(int id)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT Check_In FROM Member_Timelog " +
-                        "WHERE member_id = @member_id ", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT check_in, check_out FROM Member_Timelog " +
+                        "WHERE member_id = @member_id and check_in is not null and check_out is null ", conn);
                     cmd.Parameters.AddWithValue("@member_id", id);
 
                     SqlDataReader reader = cmd.ExecuteReader();
-                    
-                    if (reader.Read())
+
+                    while (reader.Read())
                     {
                         return true;
                     }
@@ -89,5 +91,17 @@ namespace WebApplication.Web.DAL
                 throw;
             }
         }
+
+        public IList<SelectListItem> UsersListForDropdown(IList<User> list)
+        {
+            IList<SelectListItem> result = new List<SelectListItem>();
+            foreach (User user in list)
+            {
+                result.Add(new SelectListItem { Text = user.Username, Value = user.Id.ToString() });
+            }
+
+            return result;
+        }
+
     }
 }

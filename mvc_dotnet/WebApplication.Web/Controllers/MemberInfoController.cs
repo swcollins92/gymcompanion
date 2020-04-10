@@ -17,11 +17,13 @@ namespace WebApplication.Web.Controllers
         private readonly IGymDAL gymDAL;
         private readonly IMemberDAL memberDAL;
         private readonly IAuthProvider authProvider;
-        public MemberInfoController(IAuthProvider authProvider, IGymDAL gymDAL, IMemberDAL memberDAL)
+        private readonly IUserDAL userDAL;
+        public MemberInfoController(IAuthProvider authProvider, IGymDAL gymDAL, IMemberDAL memberDAL, IUserDAL userDAL)
         {
             this.authProvider = authProvider;
             this.gymDAL = gymDAL;
             this.memberDAL = memberDAL;
+            this.userDAL = userDAL;
         }
 
         public IActionResult Index()
@@ -74,9 +76,16 @@ namespace WebApplication.Web.Controllers
         [HttpGet]
         public IActionResult CheckIn(int id)
         {
-            if (!memberDAL.CheckedInStatus(id))
+            if (!memberDAL.CheckedInStatusButNotCheckedOut(id))
             {
                 memberDAL.CheckIn(id);
+            }
+
+            User user = authProvider.GetCurrentUser();
+            
+            if(user.Role == "Employee")
+            {
+                return RedirectToAction(nameof(EmployeeTimelog));
             }
 
             return RedirectToAction(nameof(MemberTimelog));
@@ -85,12 +94,20 @@ namespace WebApplication.Web.Controllers
         [HttpGet]
         public IActionResult CheckOut(int id)
         {
-            if (memberDAL.CheckedInStatus(id))
+            if (memberDAL.CheckedInStatusButNotCheckedOut(id))
             {
                 memberDAL.CheckOut(id);
             }
-            
+
+            User user = authProvider.GetCurrentUser();
+
+            if (user.Role == "Employee")
+            {
+                return RedirectToAction(nameof(EmployeeTimelog));
+            }
+
             return RedirectToAction(nameof(MemberTimelog));
+
         }
 
         //[HttpGet]
@@ -98,5 +115,18 @@ namespace WebApplication.Web.Controllers
         //{
 
         //}
+
+        [AuthorizationFilter("Employee")]
+        [HttpGet]
+        public IActionResult EmployeeTimelog()
+        {
+            Timelog model = new Timelog();
+            IList<User> list = userDAL.GetUsers();
+            model.AllMembers = memberDAL.UsersListForDropdown(list);
+
+            return View(model);
+        }
+
+
     }
 }

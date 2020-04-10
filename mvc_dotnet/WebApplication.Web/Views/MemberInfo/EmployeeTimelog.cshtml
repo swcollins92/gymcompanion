@@ -1,20 +1,23 @@
 ﻿@model WebApplication.Web.Models.MemberInfo.Timelog
 
 @{
-    ViewData["Title"] = "TimeLog";
+    ViewData["Title"] = "EmployeeTimelog";
 }
 
-<h2>Member Time Log</h2>
+<h2>EmployeeTimelog</h2>
 
-<h4>Welcome</h4>
+<h4>Timelog</h4>
 <hr />
-<div class="row">
+<<div class="row">
     <div class="col-md-4">
         <div class="form-group">
+            <form method="get">
+                <label asp-for="MemberId">Select the member id</label>
+                <select asp-for="MemberId" asp-items="Model.AllMembers"></select>
+             </form>
             <a asp-controller="MemberInfo" asp-action="CheckOut" asp-route-id="@Model.MemberId" class="btn btn-default">check out</a>
             <a asp-controller="MemberInfo" asp-action="CheckIn" asp-route-id="@Model.MemberId" class="btn btn-default">check in</a>
         </div>
     </div>
 </div>
-
 
