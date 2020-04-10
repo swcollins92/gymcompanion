@@ -8,6 +8,7 @@ using WebApplication.Web.DAL;
 using WebApplication.Web.Models;
 using WebApplication.Web.Models.GymDetails;
 using WebApplication.Web.Models.Account;
+using WebApplication.Web.Models.MemberInfo;
 
 namespace WebApplication.Web.Controllers
 {
@@ -16,7 +17,7 @@ namespace WebApplication.Web.Controllers
         private readonly IGymDAL gymDAL;
         private readonly IMemberDAL memberDAL;
         private readonly IAuthProvider authProvider;
-        public MemberInfoController (IAuthProvider authProvider, IGymDAL gymDAL, IMemberDAL memberDAL)
+        public MemberInfoController(IAuthProvider authProvider, IGymDAL gymDAL, IMemberDAL memberDAL)
         {
             this.authProvider = authProvider;
             this.gymDAL = gymDAL;
@@ -47,7 +48,7 @@ namespace WebApplication.Web.Controllers
             return View(model);
         }
 
-        
+
         [HttpGet]
         public IActionResult ViewSchedules()
         {
@@ -57,17 +58,39 @@ namespace WebApplication.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Timelog()
+        public IActionResult MemberTimelog()
         {
+            Timelog model = new Timelog();
             User user = authProvider.GetCurrentUser();
-            if (user != null)
+            if (user.Role.ToLower() == "member")
             {
-                memberDAL.CheckIn(user.Id);
+                model.MemberId = user.Id;
+                model.IsCheckedIn = false;
             }
 
-            return View();
+            return View(model);
         }
 
+        [HttpGet]
+        public IActionResult CheckIn(int id)
+        {
+            if (!memberDAL.CheckedInStatus(id))
+            {
+                memberDAL.CheckIn(id);
+            }
 
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult CheckOut(int id)
+        {
+            if (memberDAL.CheckedInStatus(id))
+            {
+                memberDAL.CheckOut(id);
+            }
+            
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

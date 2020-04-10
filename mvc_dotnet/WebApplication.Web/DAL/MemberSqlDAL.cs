@@ -22,11 +22,10 @@ namespace WebApplication.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Member_Timelog (member_id, check_in, check_out) " +
-                        "VALUES (@membr_id, @chech_in, @check_out )", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Member_Timelog (member_id, check_in) " +
+                        "VALUES (@member_id, @check_in)", conn);
                     cmd.Parameters.AddWithValue("@member_id", id);
                     cmd.Parameters.AddWithValue("@check_in", DateTime.Now);
-                    cmd.Parameters.AddWithValue("@check_out", null);
 
                     cmd.ExecuteNonQuery();
 
@@ -40,9 +39,55 @@ namespace WebApplication.Web.DAL
             }
         }
 
-        public void CheckOut()
+        public bool CheckOut(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("UPDATE Member_Timelog SET check_out = @check_out " +
+                        "WHERE member_id = @member_id ", conn);
+                    cmd.Parameters.AddWithValue("@member_id", id);
+                    cmd.Parameters.AddWithValue("@check_out", DateTime.Now);
+
+                    cmd.ExecuteNonQuery();
+
+                    return true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return false;
+                throw;
+            }
+        }
+
+        public bool CheckedInStatus (int id)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT Check_In FROM Member_Timelog " +
+                        "WHERE member_id = @member_id ", conn);
+                    cmd.Parameters.AddWithValue("@member_id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    
+                    if (reader.Read())
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return false;
+                throw;
+            }
         }
     }
 }

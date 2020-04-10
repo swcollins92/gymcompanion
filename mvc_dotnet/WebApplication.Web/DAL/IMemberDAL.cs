@@ -8,7 +8,7 @@ namespace WebApplication.Web.DAL
     public interface IMemberDAL
     {
         bool CheckIn(int id);
-        void CheckOut();
-
+        bool CheckOut(int id);
+        bool CheckedInStatus(int id);
     }
 }
