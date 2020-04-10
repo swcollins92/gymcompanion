@@ -7,10 +7,17 @@
 
 @if (Model == null)
 {
-    
+
     <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
 }
-else
+else if (Model.Role == "Admin")
+{
+    <li><a asp-area="" asp-controller="Account" asp-action="Index">Welcome Admin: @Model.Username</a></li>
+    <li><a asp-area="" asp-controller="MemberInfo" asp-action="ViewSchedules">View Gym Schedules</a></li>
+    <li><a asp-area="" asp-controller="Account" asp-action="Logoff">Logout</a></li>
+   
+}
+else 
 {
     <li><a asp-area="" asp-controller="Account" asp-action="Index">Welcome @Model.Username</a></li>
     <li><a asp-area="" asp-controller="MemberInfo" asp-action="ViewSchedules">View Gym Schedules</a></li>
