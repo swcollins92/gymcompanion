@@ -7,25 +7,28 @@
 <h2>ViewSchedules</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-controller="MemberInfo" asp-action="EditSchedule">Create New</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-striped">
+    <thead class="thead-dark">
         <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Date</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var schedule in Model.AllSchedules) {
-        <tr>
-            <td>
-                @schedule.Name
-                @schedule.Description
-                @schedule.Date
-            </td>
-        </tr>
-}
+        @foreach (var schedule in Model.AllSchedules)
+        {
+            <tr>
+
+
+                <td>@schedule.Name</td>
+
+                <td>@schedule.Description</td>
+                <td>@schedule.Date</td>
+
+            </tr>
+        }
     </tbody>
 </table>
