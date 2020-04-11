@@ -67,12 +67,11 @@ namespace WebApplication.Web.Controllers
             if (user.Role.ToLower() == "member")
             {
                 model.MemberId = user.Id;
-                model.IsCheckedIn = false;
             }
 
             return View(model);
         }
-
+    
         [HttpGet]
         public IActionResult CheckIn(int id)
         {

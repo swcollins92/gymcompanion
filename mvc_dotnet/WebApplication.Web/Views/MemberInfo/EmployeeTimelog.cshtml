@@ -12,7 +12,7 @@
     <div class="col-md-4">
         <div class="form-group">
             <form asp-controller="MemberInfo" asp-action="EmployeeTimelog">
-                <label asp-for="MemberId">Select the Gym Member</label>
+                @*<label asp-for="MemberId">Select the Gym Member</label>*@
                 <select asp-for="MemberId" asp-items="Model.AllMembers">
                     <option value="">Select a Gym Member</option>
                 </select><br />
@@ -26,22 +26,6 @@
                     <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </form>
-
-
-            @*<a asp-controller="MemberInfo" asp-action="CheckIn" asp-route-id="@Model.MemberId" class="btn btn-default">Check In</a>
-                <a asp-controller="MemberInfo" asp-action="CheckOut" asp-route-id="@Model.MemberId" class="btn btn-default">Check Out</a>*@
-
-            @*@if (Model.IsCheckedIn)
-                {*@
-
-            @*}
-                else
-                {
-                    <a asp-controller="MemberInfo" asp-action="CheckIn" asp-route-id="@Model.MemberId" class="btn btn-default active">Check In</a>
-                    <a asp-controller="MemberInfo" asp-action="CheckOut" asp-route-id="@Model.MemberId" class="btn btn-default disabled">Check Out</a>
-                }*@
-
-
         </div>
     </div>
 </div>
