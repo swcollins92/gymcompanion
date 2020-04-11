@@ -1,9 +1,23 @@
-﻿
+﻿@model WebApplication.Web.Models.User
+
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Welcome @Model.Username</h2>
+
+@if (Model.Role == "Admin")
+{
+
+    <a asp-controller="Account" asp-action="Register" class="btn btn-primary btn-lg">Register an Employee</a>
+}
+
+@if (Model.Role == "Employee" || Model.Role == "Member")
+{
+
+    <a asp-controller="Account" asp-action="Profile" class="btn btn-primary btn-lg">View your Profile</a>
+}
+
 
 
 
