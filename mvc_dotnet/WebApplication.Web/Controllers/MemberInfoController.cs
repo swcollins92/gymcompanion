@@ -121,7 +121,20 @@ namespace WebApplication.Web.Controllers
 
             return View(model);
         }
+        
+        [HttpPost]
+        public IActionResult EmployeeTimelog(Timelog model)
+        {
+            if (model.IsCheckedIn)
+            {
+                memberDAL.CheckOut(model.MemberId);
+            }
+            else
+            {
+                memberDAL.CheckIn(model.MemberId);
+            }
 
-
+            return RedirectToAction(nameof(EmployeeTimelog));
+        }
     }
 }
