@@ -10,5 +10,6 @@ namespace WebApplication.Web.Models.MemberInfo
         public DateTime Date { get; set; }
         public DateTime CheckInTime { get; set; }
         public DateTime CheckOutTime { get; set; }
+        public int MyProperty { get; set; }
     }
 }

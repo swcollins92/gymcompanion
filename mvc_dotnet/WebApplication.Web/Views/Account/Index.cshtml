@@ -18,6 +18,17 @@
     <a asp-controller="Account" asp-action="Profile" class="btn btn-primary btn-lg">View your Profile</a>
 }
 
+@if (Model.Role == "Member")
+{
+
+    <a asp-controller="MemberInfo" asp-action="MemberTimeLog" class="btn btn-primary btn-lg">CheckIn/CheckOut</a>
+}
+@if (Model.Role == "Employee")
+{
+
+    <a asp-controller="MemberInfo" asp-action="EmployeeTimeLog" class="btn btn-primary btn-lg">CheckIn/CheckOut a Gym Member</a>
+}
+
 
 
 

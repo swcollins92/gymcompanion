@@ -76,6 +76,7 @@ namespace WebApplication.Web.Controllers
         [HttpGet]
         public IActionResult CheckIn(int id)
         {
+            
             if (!memberDAL.CheckedInStatusButNotCheckedOut(id))
             {
                 memberDAL.CheckIn(id);
@@ -109,12 +110,6 @@ namespace WebApplication.Web.Controllers
             return RedirectToAction(nameof(MemberTimelog));
 
         }
-
-        //[HttpGet]
-        //public IActionResult LogInSummary()
-        //{
-
-        //}
 
         [AuthorizationFilter("Employee")]
         [HttpGet]

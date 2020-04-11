@@ -4,19 +4,40 @@
     ViewData["Title"] = "EmployeeTimelog";
 }
 
-<h2>EmployeeTimelog</h2>
+<h2>Check In or Check Out Gym Member</h2>
 
 <h4>Timelog</h4>
 <hr />
-<<div class="row">
+<div class="row">
     <div class="col-md-4">
         <div class="form-group">
             <form method="get">
-                <label asp-for="MemberId">Select the member id</label>
-                <select asp-for="MemberId" asp-items="Model.AllMembers"></select>
-             </form>
-            <a asp-controller="MemberInfo" asp-action="CheckOut" asp-route-id="@Model.MemberId" class="btn btn-default">check out</a>
-            <a asp-controller="MemberInfo" asp-action="CheckIn" asp-route-id="@Model.MemberId" class="btn btn-default">check in</a>
+                <label asp-for="MemberId">Select the Gym Member</label>
+                <select asp-for="MemberId" asp-items="Model.AllMembers">
+                    <option value="">Select a Gym Member</option>
+                </select><br />
+                <input type="radio" asp-for="IsCheckedIn" value="false" />Check In<br />
+                <input type="radio" asp-for="IsCheckedIn" value="true" />Check Out<br />
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+
+
+            @*<a asp-controller="MemberInfo" asp-action="CheckIn" asp-route-id="@Model.MemberId" class="btn btn-default">Check In</a>
+            <a asp-controller="MemberInfo" asp-action="CheckOut" asp-route-id="@Model.MemberId" class="btn btn-default">Check Out</a>*@
+
+            @*@if (Model.IsCheckedIn)
+        {*@
+
+            @*}
+        else
+        {
+            <a asp-controller="MemberInfo" asp-action="CheckIn" asp-route-id="@Model.MemberId" class="btn btn-default active">Check In</a>
+            <a asp-controller="MemberInfo" asp-action="CheckOut" asp-route-id="@Model.MemberId" class="btn btn-default disabled">Check Out</a>
+        }*@
+
+
         </div>
     </div>
 </div>
