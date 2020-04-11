@@ -115,7 +115,7 @@ namespace WebApplication.Web.Controllers
         public IActionResult EmployeeTimelog()
         {
             Timelog model = new Timelog();
-            IList<User> list = userDAL.GetUsers();
+            IList<User> list = userDAL.GetMembers();
             model.AllMembers = memberDAL.UsersListForDropdown(list);
 
             return View(model);

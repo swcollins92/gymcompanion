@@ -222,7 +222,7 @@ namespace WebApplication.Web.DAL
             }
         }
 
-        public IList<User> GetUsers()
+        public IList<User> GetMembers()
         {
             try
             {
@@ -231,7 +231,7 @@ namespace WebApplication.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM users", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM users WHERE role = 'Member' ", conn);
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     

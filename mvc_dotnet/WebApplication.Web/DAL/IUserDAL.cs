@@ -38,6 +38,6 @@ namespace WebApplication.Web.DAL
         GymMember GetMember(int userId);
 
         void UpdateGymMember(EditViewModel model, int userId);
-        IList<User> GetUsers();
+        IList<User> GetMembers();
     }
 }
