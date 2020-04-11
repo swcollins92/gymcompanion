@@ -60,7 +60,7 @@ namespace WebApplication.Web.DAL
                     
                     while (reader.Read())
                     {
-                        result = MapRowToschedule(reader);
+                        result = MapRowToSchedule(reader);
                         list.Add(result);
                     }
 
@@ -73,7 +73,71 @@ namespace WebApplication.Web.DAL
             }
         }
 
-        private EditSchedule MapRowToschedule(SqlDataReader reader)
+        public bool AddGymEquipment (GymEquipment equip)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO gym_equipment (name, usage, photo_path) " +
+                        "VALUES (@name, @usage, @photo_path)", conn);
+                    cmd.Parameters.AddWithValue("@name", equip.Name);
+                    cmd.Parameters.AddWithValue("@usage", equip.ProperUsage);
+                    cmd.Parameters.AddWithValue("@photo_path", equip.PhotoPath);
+
+                    cmd.ExecuteNonQuery();
+
+                    return true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return false;
+                throw;
+            }
+        }
+
+        public List<GymEquipment> GetEquipments()
+        {
+            List<GymEquipment> list = new List<GymEquipment>();
+            GymEquipment equip = new GymEquipment();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("Select * From gym_equipment ", conn);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        equip = MapRowToEquipment(reader);
+                        list.Add(equip);
+                    }
+
+                    return list;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+
+        private GymEquipment MapRowToEquipment(SqlDataReader reader)
+        {
+            return new GymEquipment()
+            {
+                Name = Convert.ToString(reader["name"]),
+                ProperUsage = Convert.ToString(reader["usage"]),
+                PhotoPath = Convert.ToString(reader["photo_path"]),
+            };
+        }
+
+        private EditSchedule MapRowToSchedule(SqlDataReader reader)
         {
             return new EditSchedule()
             {

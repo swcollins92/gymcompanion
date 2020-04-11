@@ -63,5 +63,16 @@ check_out datetime
 constraint pk_member_timelog primary key (id)
 )
 
+CREATE TABLE gym_equipment
+(
+id int not null identity (1, 1),
+name varchar (30) not null,
+usage varchar (250) not null,
+photo_path varchar (50),
+video varchar(150)
+
+constraint pk_gym_equipment primary key (id)
+)
+
 INSERT INTO users (username, password, salt, role) VALUES ('arash', 'x4dbae/fWb1u5kZ1z5hhaKiMf7Q=', 'veeN6byI+yk=', 'Admin');
 COMMIT TRANSACTION;

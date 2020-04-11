@@ -1,0 +1,32 @@
+﻿@model WebApplication.Web.Models.GymDetails.ViewEquipmentsModel
+@{
+    ViewData["Title"] = "ViewEquipments";
+}
+
+<h2>ViewEquipments</h2>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Proper Usage</th>
+            <th scope="col">Photo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var equipment in Model.AllEquipments)
+        {
+            <tr>
+
+
+                <td>@equipment.Name</td>
+
+                <td>@equipment.ProperUsage</td>
+                <td>@equipment.PhotoPath</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
