@@ -75,4 +75,8 @@ constraint pk_gym_equipment primary key (id)
 )
 
 INSERT INTO users (username, password, salt, role) VALUES ('arash', 'x4dbae/fWb1u5kZ1z5hhaKiMf7Q=', 'veeN6byI+yk=', 'Admin');
+INSERT INTO users (username, password, salt, role) VALUES ('employee', 'lX0fQyhm2Eo6bvZH+0VXlZoK9EA=', 'fZFs7Oy8/HY=', 'Employee');
+INSERT INTO users (username, password, salt, role) VALUES ('gymmember', 'Q2dT0T1etr0mr++alO6dm7st+kE=', '9l0TC2Xp0Js=', 'Member');
+
+INSERT INTO gym_equipment (name, usage, photo_path, video) VALUES ('Treadmill', 'Run/Walk to burn calories', 'treadmill.png', 'insertVideohere');
 COMMIT TRANSACTION;
