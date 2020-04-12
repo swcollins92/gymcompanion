@@ -11,22 +11,30 @@
             <th scope="col">Name</th>
             <th scope="col">Proper Usage</th>
             <th scope="col">Photo</th>
+            <th scope="col">Video</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var equipment in Model.AllEquipments)
         {
-            <tr>
+        <tr>
 
 
-                <td>@equipment.Name</td>
+            <td>@equipment.Name</td>
 
-                <td>@equipment.ProperUsage</td>
-                <td>@equipment.PhotoPath</td>
-
-            </tr>
+            <td>@equipment.ProperUsage</td>
+            <td>@equipment.PhotoPath</td>
+            <td>@equipment.Video</td>
+            @*TODO:ONLY SHOW FOR ADMIN AND EMPLOYEE*@
+            <td>
+                @Html.ActionLink("Edit", "EditGymEquipment", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Add", "AddGymEquipment", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
         }
     </tbody>
 </table>
+
+
 
 

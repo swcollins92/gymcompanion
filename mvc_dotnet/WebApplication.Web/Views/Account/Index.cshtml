@@ -22,6 +22,8 @@
 {
 
     <a asp-controller="MemberInfo" asp-action="MemberTimeLog" class="btn btn-primary btn-lg">CheckIn/CheckOut</a>
+    <a asp-controller="Gym" asp-action="ViewEquipments" class="btn btn-primary btn-lg">View Gym Equipment</a>
+
 }
 @if (Model.Role == "Employee")
 {
@@ -29,6 +31,11 @@
     <a asp-controller="MemberInfo" asp-action="EmployeeTimeLog" class="btn btn-primary btn-lg">CheckIn/CheckOut a Gym Member</a>
 }
 
+@if (Model.Role == "Employee" || Model.Role == "Admin")
+{
+
+    <a asp-controller="Gym" asp-action="ViewEquipments" class="btn btn-primary btn-lg">View/Edit Gym Equipment</a>
+}
 
 
 

@@ -76,6 +76,8 @@ namespace WebApplication.Web.Providers.Auth
             return model;
         }
 
+      
+
         public bool SignIn(string username, string password)
         {
             var user = userDAL.GetUser(username);

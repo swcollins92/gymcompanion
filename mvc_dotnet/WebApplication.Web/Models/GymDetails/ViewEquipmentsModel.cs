@@ -7,6 +7,7 @@ namespace WebApplication.Web.Models.GymDetails
 {
     public class ViewEquipmentsModel
     {
+        public string Role { get; set; }
         public List<GymEquipment> AllEquipments { get; set; }
     }
 }

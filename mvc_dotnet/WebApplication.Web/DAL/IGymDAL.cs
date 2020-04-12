@@ -16,5 +16,6 @@ namespace WebApplication.Web.DAL
         List<EditSchedule> GetSchedules();
         bool AddGymEquipment(GymEquipment equip);
         List<GymEquipment> GetEquipments();
+        bool EditGymEquipment(EditGymEquipment equipment);
     }
 }

@@ -57,5 +57,24 @@ namespace WebApplication.Web.Controllers
             model.AllEquipments = gymDAL.GetEquipments();
             return View(model);
         }
+
+        [AuthorizationFilter("Admin", "Employee")]
+        [HttpGet]
+        public IActionResult EditGymEquipment()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EditGymEquipment(EditGymEquipment model)
+        {
+            if (ModelState.IsValid)
+            {
+                gymDAL.EditGymEquipment(model);
+                return RedirectToAction(nameof(ViewEquipments));
+            }
+
+            return View(model);
+        }
     }
 }
