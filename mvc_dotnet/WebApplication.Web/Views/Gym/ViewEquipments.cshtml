@@ -3,7 +3,11 @@
     ViewData["Title"] = "ViewEquipments";
 }
 
-<h2>ViewEquipments</h2>
+<h2>Gym Equipment</h2>
+
+<p>
+    <a asp-controller="Gym" asp-action="AddGymEquipment">Add Equipment</a>
+</p>
 
 <table class="table table-striped">
     <thead class="thead-dark">
@@ -28,7 +32,7 @@
             @*TODO:ONLY SHOW FOR ADMIN AND EMPLOYEE*@
             <td>
                 @Html.ActionLink("Edit", "EditGymEquipment", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Add", "AddGymEquipment", new { /* id=item.PrimaryKey */ })
+               
             </td>
         </tr>
         }

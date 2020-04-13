@@ -76,5 +76,7 @@ namespace WebApplication.Web.Controllers
 
             return View(model);
         }
+        //TODO: Session with edit equipment. 
+        //TODO: Also with users added in sql they do not show in view profile
     }
 }

@@ -15,6 +15,8 @@ namespace WebApplication.Web.Models
 
         public string WorkoutProfile { get; set; }
 
+
+        //TODO: Link photopath to actual photos
         public string PhotoPath { get; set; }
 
         
