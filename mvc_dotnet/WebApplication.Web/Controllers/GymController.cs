@@ -60,10 +60,11 @@ namespace WebApplication.Web.Controllers
 
         [AuthorizationFilter("Admin", "Employee")]
         [HttpGet]
-        public IActionResult EditGymEquipment()
+        public IActionResult EditGymEquipment(int id)
         {
-
-            return View();
+            GymEquipment model = new GymEquipment();
+            model = gymDAL.GetEquipment(id);
+            return View(model);
         }
 
         [HttpPost]

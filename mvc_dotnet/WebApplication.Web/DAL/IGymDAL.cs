@@ -17,5 +17,6 @@ namespace WebApplication.Web.DAL
         bool AddGymEquipment(GymEquipment equip);
         List<GymEquipment> GetEquipments();
         bool EditGymEquipment(EditGymEquipment equipment);
+        GymEquipment GetEquipment(int id);
     }
 }

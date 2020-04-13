@@ -135,5 +135,11 @@ namespace WebApplication.Web.Controllers
 
             return RedirectToAction(nameof(EmployeeTimelog));
         }
+
+        //[HttpGet]
+        //public IActionResult MemberVisitMetrics()
+        //{
+
+        //}
     }
 }

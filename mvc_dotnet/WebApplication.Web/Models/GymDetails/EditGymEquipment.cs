@@ -11,7 +11,6 @@ namespace WebApplication.Web.Models.GymDetails
         public int Id { get; set; }
 
         public string Name { get; set; }
-
         
         public string ProperUsage { get; set; }
 

@@ -8,6 +8,8 @@ namespace WebApplication.Web.Models.GymDetails
 {
     public class GymEquipment
     {
+        public int Id { get; set; }
+
         [Required]
         public string Name  { get; set; }
 

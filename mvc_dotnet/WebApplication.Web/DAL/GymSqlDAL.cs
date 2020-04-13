@@ -28,7 +28,7 @@ namespace WebApplication.Web.DAL
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO Schedule (name,description,date) " +
-                        "VALUES (@name, @description, @date )",conn);
+                        "VALUES (@name, @description, @date )", conn);
                     cmd.Parameters.AddWithValue("@name", schedule.Name);
                     cmd.Parameters.AddWithValue("@description", schedule.Description);
                     cmd.Parameters.AddWithValue("@date", schedule.Date);
@@ -53,13 +53,14 @@ namespace WebApplication.Web.DAL
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("UPDATE gym_equipment " +
-  "SET name = @name, usage = @usage, photo_path = @photo_path, video = @video " +
-  "WHERE name = @name", conn);
+                        "SET name = @name, usage = @usage, photo_path = @photo_path, video = @video " +
+                        "WHERE id = @id", conn);
                     cmd.Parameters.AddWithValue("@name", equipment.Name);
                     cmd.Parameters.AddWithValue("@usage", equipment.ProperUsage);
                     cmd.Parameters.AddWithValue("@photo_path", equipment.PhotoPath);
                     cmd.Parameters.AddWithValue("@video", equipment.Video);
-
+                    cmd.Parameters.AddWithValue("@id", equipment.Id);
+                    
                     cmd.ExecuteNonQuery();
 
                     return true;
@@ -84,7 +85,7 @@ namespace WebApplication.Web.DAL
                     SqlCommand cmd = new SqlCommand("Select * From Schedule ", conn);
 
                     SqlDataReader reader = cmd.ExecuteReader();
-                    
+
                     while (reader.Read())
                     {
                         result = MapRowToSchedule(reader);
@@ -100,7 +101,7 @@ namespace WebApplication.Web.DAL
             }
         }
 
-        public bool AddGymEquipment (GymEquipment equip)
+        public bool AddGymEquipment(GymEquipment equip)
         {
             try
             {
@@ -154,10 +155,39 @@ namespace WebApplication.Web.DAL
             }
         }
 
+        public GymEquipment GetEquipment(int id)
+        {
+            GymEquipment equip = new GymEquipment();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("Select * From gym_equipment WHERE id = @id ", conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        equip = MapRowToEquipment(reader);
+                    }
+
+                    return equip;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+
         private GymEquipment MapRowToEquipment(SqlDataReader reader)
         {
             return new GymEquipment()
             {
+                Id = Convert.ToInt32(reader["id"]),
                 Name = Convert.ToString(reader["name"]),
                 ProperUsage = Convert.ToString(reader["usage"]),
                 PhotoPath = Convert.ToString(reader["photo_path"]),

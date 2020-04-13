@@ -23,7 +23,7 @@
         {
         <tr>
 
-
+            
             <td>@equipment.Name</td>
 
             <td>@equipment.ProperUsage</td>
@@ -31,8 +31,8 @@
             <td>@equipment.Video</td>
             @*TODO:ONLY SHOW FOR ADMIN AND EMPLOYEE*@
             <td>
-                @Html.ActionLink("Edit", "EditGymEquipment", new { /* id=item.PrimaryKey */ }) |
-               
+                @*@Html.ActionLink("Edit", "EditGymEquipment", new { /* id=item.PrimaryKey */ }) |*@
+                <a asp-controller="Gym" asp-action="EditGymEquipment" asp-route-id="@equipment.Id">Edit</a>
             </td>
         </tr>
         }
