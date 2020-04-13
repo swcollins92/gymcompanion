@@ -52,8 +52,9 @@ namespace WebApplication.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO gym_equipment (name, usage, photo_path, video) " +
-                        "VALUES (@name, @usage, @photo_path, @video )", conn);
+                    SqlCommand cmd = new SqlCommand("UPDATE gym_equipment " +
+  "SET name = @name, usage = @usage, photo_path = @photo_path, video = @video " +
+  "WHERE name = @name", conn);
                     cmd.Parameters.AddWithValue("@name", equipment.Name);
                     cmd.Parameters.AddWithValue("@usage", equipment.ProperUsage);
                     cmd.Parameters.AddWithValue("@photo_path", equipment.PhotoPath);

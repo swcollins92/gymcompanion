@@ -7,7 +7,9 @@ namespace WebApplication.Web.Models.GymDetails
 {
     public class EditGymEquipment
     {
-        
+
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         

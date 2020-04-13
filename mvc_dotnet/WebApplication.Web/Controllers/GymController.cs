@@ -62,6 +62,7 @@ namespace WebApplication.Web.Controllers
         [HttpGet]
         public IActionResult EditGymEquipment()
         {
+
             return View();
         }
 

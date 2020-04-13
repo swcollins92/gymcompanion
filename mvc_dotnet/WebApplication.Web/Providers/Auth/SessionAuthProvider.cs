@@ -68,7 +68,7 @@ namespace WebApplication.Web.Providers.Auth
                 model.Email = member.Email;
                 model.WorkoutGoals = member.WorkoutGoals;
                 model.WorkoutProfile = member.WorkoutProfile;
-                //TODO Convert to BYTE
+                
                 model.PhotoPath = Convert.ToString(member.PhotoPath);
                 model.Password = currentUser.Password;
             }
