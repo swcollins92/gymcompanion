@@ -137,10 +137,11 @@ namespace WebApplication.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult MemberVisitMetrics()
+        public IActionResult MemberVisitMetrics(int id)
         {
-            ViewTimelog model = new ViewTimelog();
-            model.TimeDifference = memberDAL.TimeAtGym();
+            ViewVisitMetrics model = new ViewVisitMetrics();
+            model.AllVisitMetrics = memberDAL.TimeAtGym(id);
+            model.AverageDuration = memberDAL.GetAverageDurationForAMember(id);
             
             return View(model);
         }

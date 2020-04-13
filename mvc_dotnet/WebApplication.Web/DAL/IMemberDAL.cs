@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication.Web.Models;
+using WebApplication.Web.Models.MemberInfo;
+
 
 namespace WebApplication.Web.DAL
 {
@@ -13,6 +15,7 @@ namespace WebApplication.Web.DAL
         bool CheckOut(int id);
         bool CheckedInStatusButNotCheckedOut(int id);
         IList<SelectListItem> UsersListForDropdown(IList<User> list);
-        List<double> TimeAtGym();
+        List<VisitMetrics> TimeAtGym(int id);
+        double GetAverageDurationForAMember(int id);
     }
 }

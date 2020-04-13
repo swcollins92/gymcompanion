@@ -14,7 +14,8 @@
 
             <a asp-controller="MemberInfo" asp-action="CheckIn" asp-route-id="@Model.MemberId" class="btn btn-default">Check In</a>
             <a asp-controller="MemberInfo" asp-action="CheckOut" asp-route-id="@Model.MemberId" class="btn btn-default">Check Out</a>
-
+            
+            <a asp-controller="MemberInfo" asp-action="MemberVisitMetrics" asp-route-id="@Model.MemberId" class="btn btn-default">See Visits duration</a>
         </div>
     </div>
 </div>

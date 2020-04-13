@@ -1,4 +1,4 @@
-﻿@model WebApplication.Web.Models.MemberInfo.ViewTimelog
+﻿@model WebApplication.Web.Models.MemberInfo.ViewVisitMetrics
 
 @{
     ViewData["Title"] = "MemberVisitMetrics";
@@ -9,19 +9,28 @@
 <table class="table">
     <thead>
         <tr>
-         
             <th>
-                @Html.DisplayNameFor(model => model.TimeDifference)
+                Month
             </th>
-            <th></th>
+            <th>
+                Day
+            </th>
+            <th>
+                Duration in minutes
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.TimeDifference) {
+@foreach (var item in Model.AllVisitMetrics) {
         <tr>
-          
             <td>
-                @Html.DisplayFor(modelItem => item)
+                @item.Month
+            </td>
+            <td>
+                @item.Day
+            </td>
+            <td>
+                @item.Duration
             </td>
             @*<td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
@@ -30,5 +39,8 @@
         </td>*@
         </tr>
 }
+
     </tbody>
 </table>
+
+<p>averageg of all visits: @Model.AverageDuration</p>

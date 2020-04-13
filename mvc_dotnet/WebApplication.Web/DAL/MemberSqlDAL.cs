@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication.Web.Models;
+using WebApplication.Web.Models.MemberInfo;
 
 namespace WebApplication.Web.DAL
 {
@@ -103,25 +104,29 @@ namespace WebApplication.Web.DAL
             return result;
         }
 
-        public List<double> TimeAtGym()
+        public List<VisitMetrics> TimeAtGym (int id)
         {
-            List<double> list = new List<double>();
-
+            List<VisitMetrics> list = new List<VisitMetrics>();
+            
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT *, DATEDIFF(minute, check_in, check_out) " +
-                       "as DifferenceInMin from Member_Timelog", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT *, MONTH(check_in) as month , DAY(check_in) as day, " +
+                       "DATEDIFF(minute, check_in, check_out) as duration " +
+                       "from Member_Timelog " +
+                       "WHERE member_id = @id ", conn);
 
-
+                    cmd.Parameters.AddWithValue("@id", id);
+                    
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                       
-                       list.Add(Convert.ToDouble(reader["DifferenceInMin"]));
+                       VisitMetrics metric = new VisitMetrics();
+                       metric = MapRowToMEtrics(reader);
+                       list.Add(metric);
                     }
 
                     return list;
@@ -131,6 +136,45 @@ namespace WebApplication.Web.DAL
             {
                 throw;
             }
+        }
+
+        public double GetAverageDurationForAMember (int id)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT avg(DATEDIFF(minute, check_in, check_out)) as average " +
+                       "from Member_Timelog " +
+                       "WHERE member_id = @id ", conn);
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        return Convert.ToDouble(reader["average"]);
+                    }
+
+                    return 0;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+
+        private VisitMetrics MapRowToMEtrics (SqlDataReader reader)
+        {
+            return new VisitMetrics()
+            {
+                Month = Convert.ToInt32(reader["month"]),
+                Day = Convert.ToInt32(reader["day"]),
+                Duration = Convert.ToDouble(reader["duration"]),
+            };
         }
     }
 }
