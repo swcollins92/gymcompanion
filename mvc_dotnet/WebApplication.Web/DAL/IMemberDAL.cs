@@ -13,5 +13,6 @@ namespace WebApplication.Web.DAL
         bool CheckOut(int id);
         bool CheckedInStatusButNotCheckedOut(int id);
         IList<SelectListItem> UsersListForDropdown(IList<User> list);
+        List<double> TimeAtGym();
     }
 }

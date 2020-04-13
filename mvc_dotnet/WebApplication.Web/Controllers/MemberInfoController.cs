@@ -136,10 +136,13 @@ namespace WebApplication.Web.Controllers
             return RedirectToAction(nameof(EmployeeTimelog));
         }
 
-        //[HttpGet]
-        //public IActionResult MemberVisitMetrics()
-        //{
-
-        //}
+        [HttpGet]
+        public IActionResult MemberVisitMetrics()
+        {
+            ViewTimelog model = new ViewTimelog();
+            model.TimeDifference = memberDAL.TimeAtGym();
+            
+            return View(model);
+        }
     }
 }

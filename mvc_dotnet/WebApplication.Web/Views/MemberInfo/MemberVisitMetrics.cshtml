@@ -1,0 +1,34 @@
+﻿@model WebApplication.Web.Models.MemberInfo.ViewTimelog
+
+@{
+    ViewData["Title"] = "MemberVisitMetrics";
+}
+
+<h2>MemberVisitMetrics</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+         
+            <th>
+                @Html.DisplayNameFor(model => model.TimeDifference)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TimeDifference) {
+        <tr>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item)
+            </td>
+            @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+        </tr>
+}
+    </tbody>
+</table>

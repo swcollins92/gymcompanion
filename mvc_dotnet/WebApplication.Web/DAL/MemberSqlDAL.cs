@@ -103,5 +103,34 @@ namespace WebApplication.Web.DAL
             return result;
         }
 
+        public List<double> TimeAtGym()
+        {
+            List<double> list = new List<double>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT *, DATEDIFF(minute, check_in, check_out) " +
+                       "as DifferenceInMin from Member_Timelog", conn);
+
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                       
+                       list.Add(Convert.ToDouble(reader["DifferenceInMin"]));
+                    }
+
+                    return list;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
     }
 }
