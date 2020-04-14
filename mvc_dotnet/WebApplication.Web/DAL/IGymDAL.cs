@@ -12,14 +12,14 @@ namespace WebApplication.Web.DAL
 {
     public interface IGymDAL
     {
-        bool EditSchedule(EditSchedule schedule);
+        bool AddSchedule(EditSchedule schedule);
         List<EditSchedule> GetSchedules();
         bool AddGymEquipment(GymEquipment equip);
         List<GymEquipment> GetEquipments();
         bool EditGymEquipment(EditGymEquipment equipment);
         GymEquipment GetEquipment(int id);
-        bool AddGymUsage(GymUsageModel model, int id);
-
-
+        bool AddGymUsage(GymUsageModel model);
+        EditSchedule GetScheduleById(int id);
+        bool EditSchedule(EditSchedule schedule);
     }
 }

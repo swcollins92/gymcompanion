@@ -20,7 +20,7 @@ namespace WebApplication.Web.DAL
             this.connectionString = connectionString;
         }
 
-        public bool EditSchedule(EditSchedule schedule)
+        public bool AddSchedule(EditSchedule schedule)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace WebApplication.Web.DAL
                     cmd.Parameters.AddWithValue("@photo_path", equipment.PhotoPath);
                     cmd.Parameters.AddWithValue("@video", equipment.Video);
                     cmd.Parameters.AddWithValue("@id", equipment.Id);
-                    
+
                     cmd.ExecuteNonQuery();
 
                     return true;
@@ -97,6 +97,60 @@ namespace WebApplication.Web.DAL
             }
             catch (SqlException ex)
             {
+                throw;
+            }
+        }
+
+        public EditSchedule GetScheduleById(int id)
+        {
+            EditSchedule result = new EditSchedule();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("Select * From Schedule WHERE id = @id", conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        result = MapRowToSchedule(reader);
+                    }
+
+                    return result;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+
+        public bool EditSchedule(EditSchedule schedule)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("UPDATE Schedule " +
+                        "SET name = @name, description = @description, date = @date " +
+                        "WHERE id = @id", conn);
+                    cmd.Parameters.AddWithValue("@name", schedule.Name);
+                    cmd.Parameters.AddWithValue("@description", schedule.Description);
+                    cmd.Parameters.AddWithValue("@date", schedule.Date);
+                    cmd.Parameters.AddWithValue("@id", schedule.Id);
+
+                    cmd.ExecuteNonQuery();
+
+                    return true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return false;
                 throw;
             }
         }
@@ -183,7 +237,7 @@ namespace WebApplication.Web.DAL
             }
         }
 
-        public bool AddGymUsage(GymUsageModel model, int id)
+        public bool AddGymUsage(GymUsageModel model)
         {
             try
             {
@@ -193,7 +247,7 @@ namespace WebApplication.Web.DAL
                     SqlCommand cmd = new SqlCommand("INSERT INTO gym_equipment_usage (equipment_id, member_id, date_time, reps, weight) " +
                         "VALUES (@equipment_id, @member_id, @date_time, @reps, @weight)", conn);
                     cmd.Parameters.AddWithValue("@equipment_id", model.Equipment_id);
-                    cmd.Parameters.AddWithValue("@member_id", id);
+                    cmd.Parameters.AddWithValue("@member_id", model.Member_id);
                     cmd.Parameters.AddWithValue("@date_time", model.Date_time);
                     cmd.Parameters.AddWithValue("@reps", model.Reps);
                     cmd.Parameters.AddWithValue("@weight", model.Weight);
@@ -226,6 +280,7 @@ namespace WebApplication.Web.DAL
         {
             return new EditSchedule()
             {
+                Id = Convert.ToInt32(reader["id"]),
                 Name = Convert.ToString(reader["name"]),
                 Description = Convert.ToString(reader["description"]),
                 Date = Convert.ToDateTime(reader["date"]),

@@ -7,7 +7,7 @@
 <h2>ViewSchedules</h2>
 
 <p>
-    <a asp-controller="MemberInfo" asp-action="EditSchedule">Create New</a>
+    <a asp-controller="MemberInfo" asp-action="AddSchedule">Create New</a>
 </p>
 <table class="table table-striped">
     <thead class="thead-dark">
@@ -15,6 +15,7 @@
             <th scope="col">Name</th>
             <th scope="col">Description</th>
             <th scope="col">Date</th>
+
         </tr>
     </thead>
     <tbody>
@@ -27,8 +28,10 @@
 
                 <td>@schedule.Description</td>
                 <td>@schedule.Date</td>
-
+                <td><a asp-controller="MemberInfo" asp-action="EditSchedule" asp-route-id="@schedule.Id" class="btn btn-lg">Edit</a></td>
             </tr>
         }
     </tbody>
 </table>
+
+

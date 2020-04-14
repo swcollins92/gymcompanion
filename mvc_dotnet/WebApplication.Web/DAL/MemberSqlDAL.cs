@@ -113,7 +113,7 @@ namespace WebApplication.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT *, MONTH(check_in) as month , DAY(check_in) as day, " +
+                    SqlCommand cmd = new SqlCommand("SELECT *, YEAR(check_in) as year, MONTH(check_in) as month , DAY(check_in) as day, " +
                        "DATEDIFF(minute, check_in, check_out) as duration " +
                        "from Member_Timelog " +
                        "WHERE member_id = @id ", conn);
@@ -171,6 +171,7 @@ namespace WebApplication.Web.DAL
         {
             return new VisitMetrics()
             {
+                Year = Convert.ToInt32(reader["year"]),
                 Month = Convert.ToInt32(reader["month"]),
                 Day = Convert.ToInt32(reader["day"]),
                 Duration = Convert.ToDouble(reader["duration"]),
