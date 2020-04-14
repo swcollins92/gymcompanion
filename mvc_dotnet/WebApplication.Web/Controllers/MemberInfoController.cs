@@ -88,6 +88,7 @@ namespace WebApplication.Web.Controllers
             if (user.Role.ToLower() == "member")
             {
                 model.MemberId = user.Id;
+                model.IsCheckedIn = memberDAL.CheckedInStatusButNotCheckedOut(user.Id);
             }
 
             return View(model);
