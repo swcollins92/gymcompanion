@@ -31,12 +31,34 @@ namespace WebApplication.Web.Controllers
             return View();
         }
 
-        [AuthorizationFilter("Admin")]
+        [AuthorizationFilter("Admin", "Employee")]
         [HttpGet]
-        public IActionResult EditSchedule()
+        public IActionResult AddSchedule()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult AddSchedule(EditSchedule model)
+        {
+            if (ModelState.IsValid)
+            {
+                gymDAL.AddSchedule(model);
+                return RedirectToAction(nameof(ViewSchedules));
+            }
+
+            return View(model);
+        }
+        
+        [AuthorizationFilter("Admin", "Employee")]
+        [HttpGet]
+        public IActionResult EditSchedule(int id)
+        {
+            EditSchedule model = new EditSchedule();
+            model = gymDAL.GetScheduleById(id);
+            return View(model);
+        }
+
 
         [HttpPost]
         public IActionResult EditSchedule(EditSchedule model)
@@ -49,7 +71,6 @@ namespace WebApplication.Web.Controllers
 
             return View(model);
         }
-
 
         [HttpGet]
         public IActionResult ViewSchedules()

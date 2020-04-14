@@ -92,6 +92,10 @@ INSERT INTO users (username, password, salt, role) VALUES ('arash', 'x4dbae/fWb1
 INSERT INTO users (username, password, salt, role) VALUES ('employee', 'lX0fQyhm2Eo6bvZH+0VXlZoK9EA=', 'fZFs7Oy8/HY=', 'Employee');
 INSERT INTO users (username, password, salt, role) VALUES ('gymmember', 'Q2dT0T1etr0mr++alO6dm7st+kE=', '9l0TC2Xp0Js=', 'Member');
 
+INSERT INTO Member_Timelog (member_id, check_in, check_out) VALUES (3,' 2020-04-13 12:06:44.757', '2020-04-13 13:06:44.757')
+INSERT INTO Member_Timelog (member_id, check_in, check_out) VALUES (3,' 2020-04-12 12:00:44.757', '2020-04-12 13:06:44.757')
+INSERT INTO Member_Timelog (member_id, check_in, check_out) VALUES (3,' 2020-04-11 11:30:44.757', '2020-04-11 13:06:44.757')
+
 INSERT INTO gym_equipment (name, usage, photo_path, video) VALUES ('Treadmill', 'Run/Walk to burn calories', 'treadmill.png', 'insertVideohere');
 INSERT INTO gym_equipment_usage (equipment_id,member_id, date_time, reps, weight) VALUES (2,99 ,'2022-04-14 10:35:33.000', 200, 450);
 COMMIT TRANSACTION;
