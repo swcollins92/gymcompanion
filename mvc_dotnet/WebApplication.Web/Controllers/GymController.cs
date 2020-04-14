@@ -58,6 +58,14 @@ namespace WebApplication.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult ViewEquipmentMember()
+        {
+            ViewEquipmentMember model = new ViewEquipmentMember();
+            model.AllEquipments = gymDAL.GetEquipments();
+            return View(model);
+        }
+
         [AuthorizationFilter("Admin", "Employee")]
         [HttpGet]
         public IActionResult EditGymEquipment(int id)
@@ -66,6 +74,7 @@ namespace WebApplication.Web.Controllers
             model = gymDAL.GetEquipment(id);
             return View(model);
         }
+
 
         [HttpPost]
         public IActionResult EditGymEquipment(EditGymEquipment model)

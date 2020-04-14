@@ -37,10 +37,12 @@ else
             @if (Model.Role == "Member")
             {
                 <li><a asp-area="" asp-controller="MemberInfo" asp-action="MemberTimelog">Check In/Check Out</a></li>
+                <li><a asp-area="" asp-controller="Gym" asp-action="ViewEquipmentMember">View/Use Gym Equipment</a></li>
             }
             else if (Model.Role == "Employee")
             {
                 <li><a asp-area="" asp-controller="MemberInfo" asp-action="EmployeeTimelog">Check In/Check Out Gym member</a></li>
+                <li><a asp-area="" asp-controller="Gym" asp-action="ViewEquipments">View/Edit Gym Equipment</a></li>
             }
 
             <br />
