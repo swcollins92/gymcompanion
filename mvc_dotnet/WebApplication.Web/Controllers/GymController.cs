@@ -87,6 +87,26 @@ namespace WebApplication.Web.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult SetMemberEquipmentUsage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SetMemberEquipmentUsage(GymUsageModel model)
+        {
+
+            User currentUser = authProvider.GetCurrentUser();
+            
+            if (ModelState.IsValid)
+            {
+                gymDAL.AddGymUsage(model, currentUser.Id);
+            }
+
+            return RedirectToAction(nameof(ViewEquipments));
+        }
         //TODO: Session with edit equipment. 
         //TODO: Also with users added in sql they do not show in view profile
     }

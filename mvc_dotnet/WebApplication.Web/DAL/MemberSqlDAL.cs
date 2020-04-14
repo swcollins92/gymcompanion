@@ -50,7 +50,7 @@ namespace WebApplication.Web.DAL
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("UPDATE Member_Timelog SET check_out = @check_out " +
-                        "WHERE member_id = @member_id ", conn);
+                        "WHERE member_id = @member_id and check_out is null ", conn);
                     cmd.Parameters.AddWithValue("@member_id", id);
                     cmd.Parameters.AddWithValue("@check_out", DateTime.Now);
 

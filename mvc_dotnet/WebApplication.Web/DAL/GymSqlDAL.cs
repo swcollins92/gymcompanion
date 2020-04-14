@@ -183,6 +183,33 @@ namespace WebApplication.Web.DAL
             }
         }
 
+        public bool AddGymUsage(GymUsageModel model, int id)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO gym_equipment_usage (equipment_id, member_id, date_time, reps, weight) " +
+                        "VALUES (@equipment_id, @member_id, @date_time, @reps, @weight)", conn);
+                    cmd.Parameters.AddWithValue("@equipment_id", model.Equipment_id);
+                    cmd.Parameters.AddWithValue("@member_id", id);
+                    cmd.Parameters.AddWithValue("@date_time", model.Date_time);
+                    cmd.Parameters.AddWithValue("@reps", model.Reps);
+                    cmd.Parameters.AddWithValue("@weight", model.Weight);
+                    cmd.ExecuteNonQuery();
+
+                    return true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return false;
+                throw;
+            }
+        }
+
+
         private GymEquipment MapRowToEquipment(SqlDataReader reader)
         {
             return new GymEquipment()
@@ -204,5 +231,8 @@ namespace WebApplication.Web.DAL
                 Date = Convert.ToDateTime(reader["date"]),
             };
         }
+
+
+
     }
 }
