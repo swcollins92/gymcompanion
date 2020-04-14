@@ -125,7 +125,7 @@ namespace WebApplication.Web.DAL
                     while (reader.Read())
                     {
                        VisitMetrics metric = new VisitMetrics();
-                       metric = MapRowToMEtrics(reader);
+                       metric = MapRowToMetrics(reader);
                        list.Add(metric);
                     }
 
@@ -167,7 +167,7 @@ namespace WebApplication.Web.DAL
             }
         }
 
-        private VisitMetrics MapRowToMEtrics (SqlDataReader reader)
+        private VisitMetrics MapRowToMetrics (SqlDataReader reader)
         {
             return new VisitMetrics()
             {

@@ -91,7 +91,7 @@ namespace WebApplication.Web.Controllers
                     authProvider.Register(registerViewModel, "Member");
                 }
                 // Redirect the user where you want them to go after registering
-                return RedirectToAction("Profile", "Account");
+                return RedirectToAction("Index", "Account");
             }
 
             return View(registerViewModel);
@@ -140,7 +140,7 @@ namespace WebApplication.Web.Controllers
                 authProvider.Register(registerViewModel, "Employee");
 
                 // Redirect the user where you want them to go after registering
-                return RedirectToAction("Profile", "Account");
+                return RedirectToAction("Index", "Account");
             }
 
             return View(registerViewModel);
