@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Shared\" />
+    <Folder Include="wwwroot\images\profile_photos\" />
   </ItemGroup>
 
 </Project>

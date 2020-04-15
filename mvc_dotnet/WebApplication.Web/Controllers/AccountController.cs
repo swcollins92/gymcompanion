@@ -69,7 +69,8 @@ namespace WebApplication.Web.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            RegisterViewModel model = new RegisterViewModel();
+            return View(model);
         }
 
         [HttpPost]
