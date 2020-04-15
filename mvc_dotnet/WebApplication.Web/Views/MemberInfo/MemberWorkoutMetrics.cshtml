@@ -1,0 +1,31 @@
+﻿@model WebApplication.Web.Models.MemberInfo.ViewWorkoutMetrics
+
+@{
+    ViewData["Title"] = "MemberWorkoutMetrics";
+}
+
+<h2>MemberWorkoutMetrics</h2>
+
+<p>You spent @Model.TimeSpent minutes at the gym</p>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Reps</th>
+            <th scope="col">Weight</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var metric in Model.AllMetrics)
+        {
+            <tr>
+                <td>@metric.EquipmentName</td>
+
+                <td>@metric.Reps</td>
+                <td>@metric.Weights</td>
+            </tr>
+        }
+    </tbody>
+</table>

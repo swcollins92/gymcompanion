@@ -17,5 +17,6 @@ namespace WebApplication.Web.DAL
         IList<SelectListItem> UsersListForDropdown(IList<User> list);
         List<VisitMetrics> TimeAtGym(int id);
         double GetAverageDurationForAMember(int id);
+        List<WorkoutMetrics> GetAllMetricsById(int id);
     }
 }

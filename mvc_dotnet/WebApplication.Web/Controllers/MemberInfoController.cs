@@ -167,5 +167,20 @@ namespace WebApplication.Web.Controllers
             
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult MemberWorkoutMetrics(int id)
+        {
+            ViewWorkoutMetrics model = new ViewWorkoutMetrics();
+            model.AllMetrics = memberDAL.GetAllMetricsById(id);
+            model.TimeSpent = memberDAL.GetAverageDurationForAMember(id);
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Tim(Timelog model)
+        {
+            return RedirectToAction(nameof(MemberWorkoutMetrics), new { id = model.MemberId});
+        }
     }
 }
