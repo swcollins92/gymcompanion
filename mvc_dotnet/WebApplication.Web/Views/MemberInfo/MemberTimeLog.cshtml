@@ -17,12 +17,12 @@
             {
                 <p>You are checked in! Make sure you check out so you see your progress at the Gym!</p>
                 <a asp-controller="MemberInfo" asp-action="CheckIn" asp-route-id="@Model.MemberId" class="btn btn-default disabled">Check In</a>
-                <a asp-controller="MemberInfo" asp-action="CheckOut" asp-route-id="@Model.MemberId" class="btn btn-default active">Check Out</a>
+                <a asp-controller="MemberInfo" asp-action="CheckOut" asp-route-id="@Model.MemberId" class="btn btn-primary active">Check Out</a>
             }
             else
             {
                 <p>Make sure to check in so you can log your time at the Gym!</p>
-                <a asp-controller="MemberInfo" asp-action="CheckIn" asp-route-id="@Model.MemberId" class="btn btn-default active">Check In</a>
+                <a asp-controller="MemberInfo" asp-action="CheckIn" asp-route-id="@Model.MemberId" class="btn btn-primary active">Check In</a>
                 <a asp-controller="MemberInfo" asp-action="CheckOut" asp-route-id="@Model.MemberId" class="btn btn-default disabled">Check Out</a>
                 <a asp-controller="MemberInfo" asp-action="MemberVisitMetrics" asp-route-id="@Model.MemberId" class="btn btn-default active">See Visits duration</a>
             }

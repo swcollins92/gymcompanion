@@ -4,12 +4,15 @@
     ViewData["Title"] = "Profile";
 }
 
-<h2>Profile</h2>
+<h2>Profile |  @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })</h2>
 
 
 <table class="table">
     <thead>
         <tr>
+            <th>
+
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -29,6 +32,9 @@
     <tbody>
 
         <tr>
+            <td id="profileimage">
+                <img src="~/images/profile_photo/@(Model.PhotoPath).png" class="rounded-circle" />
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => @Model.Name)
             </td>
@@ -41,12 +47,10 @@
             <td>
                 @Html.DisplayFor(modelItem => @Model.WorkoutProfile)
             </td>
-            <td id="profileimage">
-                <img src="~/images/profile_photo/@(Model.PhotoPath).png" class="rounded-circle"/>
-            </td>
+
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) 
-              
+               
+
             </td>
         </tr>
 
