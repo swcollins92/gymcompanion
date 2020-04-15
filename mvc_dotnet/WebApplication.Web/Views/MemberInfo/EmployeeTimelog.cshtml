@@ -29,8 +29,19 @@
                 <div class="form-group">
                     <input type="submit" value="Submit" class="btn btn-default" />
                 </div>
+                
             </form>
         </div>
+
+        <form asp-controller="MemberInfo" asp-action="Tim" method="get">
+
+            <select asp-for="MemberId" asp-items="Model.AllMembers">
+                <option value="">Select a Gym Member</option>
+            </select><br />
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </form>
     </div>
 </div>
 

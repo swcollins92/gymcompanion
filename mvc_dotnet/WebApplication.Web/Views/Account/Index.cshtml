@@ -23,11 +23,13 @@
 
     <a asp-controller="MemberInfo" asp-action="MemberTimeLog" class="btn btn-primary btn-lg">CheckIn/CheckOut</a>
     <a asp-controller="Gym" asp-action="ViewEquipmentMember" class="btn btn-primary btn-lg">View/Use Gym Equipment</a>
+    <a asp-controller="MemberInfo" asp-action="MemberWorkoutMetrics" asp-route-id="@Model.Id" class="btn btn-primary btn-lg">View Workout Stats</a>
+
 
 }
 @if (Model.Role == "Employee")
 {
-
+   
     <a asp-controller="MemberInfo" asp-action="EmployeeTimeLog" class="btn btn-primary btn-lg">CheckIn/CheckOut a Gym Member</a>
 }
 
@@ -36,6 +38,8 @@
 
     <a asp-controller="Gym" asp-action="ViewEquipments" class="btn btn-primary btn-lg">View/Edit Gym Equipment</a>
 }
+
+
 
 
 
