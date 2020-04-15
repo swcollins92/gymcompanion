@@ -21,5 +21,6 @@ namespace WebApplication.Web.DAL
         bool AddGymUsage(GymUsageModel model);
         EditSchedule GetScheduleById(int id);
         bool EditSchedule(EditSchedule schedule);
+        List<MachineMetrics> GetAllMachineMetrics();
     }
 }

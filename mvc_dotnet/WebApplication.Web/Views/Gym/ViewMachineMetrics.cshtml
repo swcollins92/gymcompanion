@@ -1,0 +1,28 @@
+﻿@model WebApplication.Web.Models.GymDetails.ViewMachineMetrics
+
+@{
+    ViewData["Title"] = "ViewMachineMetrics";
+}
+
+<h2>ViewMachineMetrics</h2>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Equipment Name</th>
+            <th scope="col">Number Of Times Used</th>
+            <th scope="col">Year/Month</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var equipment in Model.AllMetrics)
+        {
+        <tr>
+            <td>@equipment.EquipmentName</td>
+
+            <td>@equipment.NumberOfTimeUsed</td>
+            <td>@equipment.Year/@equipment.Month</td>
+        </tr>
+        }
+    </tbody>
+</table>

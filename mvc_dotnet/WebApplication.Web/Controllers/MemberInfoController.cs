@@ -157,7 +157,7 @@ namespace WebApplication.Web.Controllers
 
             return RedirectToAction(nameof(EmployeeTimelog));
         }
-
+        
         [HttpGet]
         public IActionResult MemberVisitMetrics(int id)
         {
@@ -178,7 +178,17 @@ namespace WebApplication.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Tim(Timelog model)
+        public IActionResult EmployeeWorkoutMetrics()
+        {
+            Timelog model = new Timelog();
+            IList<User> list = userDAL.GetMembers();
+            model.AllMembers = memberDAL.UsersListForDropdown(list);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult EmployeeWorkoutById(Timelog model)
         {
             return RedirectToAction(nameof(MemberWorkoutMetrics), new { id = model.MemberId});
         }
