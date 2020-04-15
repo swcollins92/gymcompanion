@@ -22,9 +22,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.WorkoutProfile)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhotoPath)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -43,8 +41,8 @@
             <td>
                 @Html.DisplayFor(modelItem => @Model.WorkoutProfile)
             </td>
-            <td>
-                <img src="~/images/profile_photo/@(Model.PhotoPath).png" style="max-width: 10%;"/>
+            <td id="profileimage">
+                <img src="~/images/profile_photo/@(Model.PhotoPath).png" class="rounded-circle"/>
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) 
