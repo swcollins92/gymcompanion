@@ -28,7 +28,10 @@ namespace WebApplication.Web.Models
              new SelectListItem() { Text = "joker", Value = "joker" },
              new SelectListItem() { Text = "ninja", Value = "ninja" },
              new SelectListItem() { Text = "pikachu", Value = "pikachu" },
-             new SelectListItem() { Text = "smiley face", Value = "smiley_face" }
+             new SelectListItem() { Text = "smiley face", Value = "smiley_face" },
+             new SelectListItem() {Text = "Mike", Value = "Mike"},
+             new SelectListItem() {Text = "Deadpool", Value ="Deadpool"},
+             new SelectListItem() {Text = "JoeExotic", Value ="JoeExotic"}
         };
     }
 }

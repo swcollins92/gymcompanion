@@ -90,6 +90,13 @@ abbr[title] {
     margin-left: auto;
     margin-right: auto;
 }
+.logo_pic{
+    height:50%;
+    width: 65%;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+}
 
 b,
 strong {
