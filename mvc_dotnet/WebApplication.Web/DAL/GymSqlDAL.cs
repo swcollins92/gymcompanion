@@ -53,12 +53,12 @@ namespace WebApplication.Web.DAL
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("UPDATE gym_equipment " +
-                        "SET name = @name, usage = @usage, photo_path = @photo_path, video = @video " +
+                        "SET name = @name, usage = @usage, photo_path = @photo_path " +
                         "WHERE id = @id", conn);
                     cmd.Parameters.AddWithValue("@name", equipment.Name);
                     cmd.Parameters.AddWithValue("@usage", equipment.ProperUsage);
                     cmd.Parameters.AddWithValue("@photo_path", equipment.PhotoPath);
-                    cmd.Parameters.AddWithValue("@video", equipment.Video);
+                    
                     cmd.Parameters.AddWithValue("@id", equipment.Id);
 
                     cmd.ExecuteNonQuery();
@@ -162,12 +162,12 @@ namespace WebApplication.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO gym_equipment (name, usage, photo_path, video) " +
-                        "VALUES (@name, @usage, @photo_path, @video)", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO gym_equipment (name, usage, photo_path) " +
+                        "VALUES (@name, @usage, @photo_path)", conn);
                     cmd.Parameters.AddWithValue("@name", equip.Name);
                     cmd.Parameters.AddWithValue("@usage", equip.ProperUsage);
                     cmd.Parameters.AddWithValue("@photo_path", equip.PhotoPath);
-                    cmd.Parameters.AddWithValue("@video", equip.Video);
+                    
                     cmd.ExecuteNonQuery();
 
                     return true;
@@ -300,7 +300,7 @@ namespace WebApplication.Web.DAL
                 Name = Convert.ToString(reader["name"]),
                 ProperUsage = Convert.ToString(reader["usage"]),
                 PhotoPath = Convert.ToString(reader["photo_path"]),
-                Video = Convert.ToString(reader["video"])
+                
             };
         }
 
