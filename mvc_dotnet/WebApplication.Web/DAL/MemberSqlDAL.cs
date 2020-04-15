@@ -125,7 +125,7 @@ namespace WebApplication.Web.DAL
                     while (reader.Read())
                     {
                        VisitMetrics metric = new VisitMetrics();
-                       metric = MapRowToMetrics(reader);
+                       metric = MapRowToVisitMetrics(reader);
                        list.Add(metric);
                     }
 
@@ -167,7 +167,51 @@ namespace WebApplication.Web.DAL
             }
         }
 
-        private VisitMetrics MapRowToMetrics (SqlDataReader reader)
+        public List<WorkoutMetrics> GetAllMetricsById (int id)
+        {
+            List<WorkoutMetrics> list = new List<WorkoutMetrics>();
+            
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * " +
+                       "From gym_equipment_usage " +
+                       "INNER JOIN gym_equipment on gym_equipment.id = gym_equipment_usage.equipment_id " +
+                       "WHERE gym_equipment_usage.member_id = @id ", conn);
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        WorkoutMetrics metric = new WorkoutMetrics();
+                        metric = MapRowToWorkoutMetrics(reader);
+                        list.Add(metric);
+                    }
+
+                    return list;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+
+        private WorkoutMetrics MapRowToWorkoutMetrics(SqlDataReader reader)
+        {
+            return new WorkoutMetrics()
+            {
+                EquipmentName = Convert.ToString(reader["name"]),
+                Reps = Convert.ToInt32(reader["reps"]),
+                Weights = Convert.ToInt32(reader["weight"])                
+            };
+        }
+
+        private VisitMetrics MapRowToVisitMetrics (SqlDataReader reader)
         {
             return new VisitMetrics()
             {
