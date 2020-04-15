@@ -44,7 +44,7 @@
                 @Html.DisplayFor(modelItem => @Model.WorkoutProfile)
             </td>
             <td>
-                <img src="~/images/profile_photo/@(Model.PhotoPath).png"/>
+                <img src="~/images/profile_photo/@(Model.PhotoPath).png" style="max-width: 10%;"/>
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) 

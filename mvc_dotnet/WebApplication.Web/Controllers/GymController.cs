@@ -63,6 +63,8 @@ namespace WebApplication.Web.Controllers
         {
             ViewEquipmentMember model = new ViewEquipmentMember();
             model.AllEquipments = gymDAL.GetEquipments();
+            
+
             return View(model);
         }
 

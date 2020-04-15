@@ -237,6 +237,34 @@ namespace WebApplication.Web.DAL
             }
         }
 
+        //public ViewEquipmentMember GetEquipmentPhotoPath(int id)
+        //{
+        //    ViewEquipmentMember equip = new ViewEquipmentMember();
+
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(connectionString))
+        //        {
+        //            conn.Open();
+        //            SqlCommand cmd = new SqlCommand("Select photo_path From gym_equipment WHERE id = @id ", conn);
+        //            cmd.Parameters.AddWithValue("@id", id);
+
+        //            SqlDataReader reader = cmd.ExecuteReader();
+
+        //            while (reader.Read())
+        //            {
+        //                equip = MapRowToEquipment(reader);
+        //            }
+
+        //            return equip;
+        //        }
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        throw;
+        //    }
+        //}
+
         public bool AddGymUsage(GymUsageModel model)
         {
             try

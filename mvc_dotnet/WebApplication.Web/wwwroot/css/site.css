@@ -336,6 +336,10 @@ th {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.table img{
+    width:100%; height:auto;
+}
+
 .glyphicon-asterisk:before {
     content: "\002a";
 }
