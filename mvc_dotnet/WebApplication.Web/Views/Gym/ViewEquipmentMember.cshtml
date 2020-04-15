@@ -21,7 +21,7 @@
                 <td>@equipment.Name</td>
 
                 <td>@equipment.ProperUsage</td>
-                <td id="gymequipmentmember"><img src="~/images/gym_equipment/@(equipment.PhotoPath)" /></td>
+                <td id="gymequipmentmember"><img src="~/images/gym_equipment/@(equipment.PhotoPath).png" /></td>
                 <td>
                     <a asp-controller="Gym" asp-action="SetMemberEquipmentUsage" asp-route-id="@equipment.Id" class="btn btn-primary">Log Usage</a> 
                 </td>

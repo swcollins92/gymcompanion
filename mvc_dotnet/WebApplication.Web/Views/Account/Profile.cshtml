@@ -4,7 +4,7 @@
     ViewData["Title"] = "Profile";
 }
 
-<h2>Profile |  @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })</h2>
+<h2>Profile |  @Html.ActionLink("Edit Profile", "Edit", new { /* id=item.PrimaryKey */ })</h2>
 
 
 <table class="table">
@@ -14,19 +14,18 @@
 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                Email Address
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WorkoutGoals)
+                Workout Goals
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WorkoutProfile)
+                Body Profile
             </th>
-            
-            <th></th>
+         
         </tr>
     </thead>
     <tbody>
@@ -48,10 +47,7 @@
                 @Html.DisplayFor(modelItem => @Model.WorkoutProfile)
             </td>
 
-            <td>
-               
-
-            </td>
+            
         </tr>
 
     </tbody>

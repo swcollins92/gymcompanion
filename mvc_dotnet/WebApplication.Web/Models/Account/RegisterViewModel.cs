@@ -44,9 +44,33 @@ namespace WebApplication.Web.Models.Account
         {
              new SelectListItem() { Text = "batman", Value = "batman" },
              new SelectListItem() { Text = "cool emoji", Value = "cool_emoji" },
+             new SelectListItem() { Text = "daredevil", Value = "daredevil" },
+             new SelectListItem() { Text = "female", Value = "female" },
+             new SelectListItem() { Text = "male", Value = "male" },
              new SelectListItem() { Text = "joker", Value = "joker" },
              new SelectListItem() { Text = "ninja", Value = "ninja" },
-             new SelectListItem() { Text = "pikachu", Value = "pikachu" }
+             new SelectListItem() { Text = "pikachu", Value = "pikachu" },
+             new SelectListItem() { Text = "smiley face", Value = "smiley_face" },
+             new SelectListItem() {Text = "Mike", Value = "Mike"},
+             new SelectListItem() {Text = "Deadpool", Value ="Deadpool"},
+             new SelectListItem() {Text = "JoeExotic", Value ="JoeExotic"}
+        };
+        public List<SelectListItem> BodyProfile = new List<SelectListItem>()
+        {
+             new SelectListItem() { Text = "Fit", Value = "Fit" },
+             new SelectListItem() { Text = "Slim", Value = "Slim" },
+             new SelectListItem() { Text = "Big", Value = "Big" },
+             new SelectListItem() { Text = "Husky", Value = "Husky" },
+             new SelectListItem() { Text = "Tall", Value = "Tall" },
+             new SelectListItem() { Text = "Short", Value = "Short" }
+        };
+        public List<SelectListItem> WorkoutGoalsSelection = new List<SelectListItem>()
+        {
+             new SelectListItem() { Text = "Lose Weight", Value = "Lose Weight" },
+             new SelectListItem() { Text = "Be Healthier", Value = "Be Healthier" },
+             new SelectListItem() { Text = "Relieve Stress", Value = "Relieve Stress" },
+             new SelectListItem() { Text = "Gain Muscle", Value = "Gain Muscle" },
+             new SelectListItem() { Text = "Be More Athletic", Value = "Be More Athletic" }
         };
     }
 }

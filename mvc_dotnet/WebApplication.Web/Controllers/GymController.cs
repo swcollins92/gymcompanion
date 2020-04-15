@@ -36,7 +36,8 @@ namespace WebApplication.Web.Controllers
         [HttpGet]
         public IActionResult AddGymEquipment()
         {
-            return View();
+            GymEquipment model = new GymEquipment();
+            return View(model);
         }
 
         [HttpPost]
