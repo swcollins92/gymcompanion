@@ -29,7 +29,12 @@ namespace WebApplication.Web.Models.GymDetails
              new SelectListItem() { Text = "Benchpress", Value = "benchpress" },
              new SelectListItem() { Text = "Elliptical", Value = "elliptical" },
              new SelectListItem() { Text = "Squat Rack", Value = "squatrack" },
-             new SelectListItem() { Text = "Bicep Curl Machine", Value = "bicep" }
+             new SelectListItem() { Text = "Bicep Curl Machine", Value = "bicep" },
+             new SelectListItem() { Text = "Chest Press Machine", Value = "armpress" },
+             new SelectListItem() { Text = "Free Weight Workout", Value = "dunbells" },
+             new SelectListItem() { Text = "Leg Press", Value = "legpress" },
+             new SelectListItem() { Text = "Universal Workout", Value = "Resistence" },
+             new SelectListItem() { Text = "defaultimage", Value = "defaultequipment" }
         };
     }
 }

@@ -68,8 +68,7 @@ CREATE TABLE gym_equipment
 id int not null identity (1, 1),
 name varchar (30) not null,
 usage varchar (250) not null,
-photo_path varchar (50),
-video varchar(150)
+photo_path varchar (50)
 
 constraint pk_gym_equipment primary key (id)
 )
@@ -109,9 +108,9 @@ INSERT INTO Member_Timelog (member_id, check_in, check_out) VALUES (3,' 2020-04-
 INSERT INTO Member_Timelog (member_id, check_in, check_out) VALUES (3,' 2020-04-12 12:00:44.757', '2020-04-12 13:06:44.757')
 INSERT INTO Member_Timelog (member_id, check_in, check_out) VALUES (3,' 2020-04-11 11:30:44.757', '2020-04-11 13:06:44.757')
 
-INSERT INTO gym_equipment (name, usage, photo_path, video) VALUES ('Treadmill', 'Keep your head up. If you are new to the treadmill, you may be tempted to look at your feet as you run.', 'treadmill.png', 'insertVideohere');
-INSERT INTO gym_equipment (name, usage, photo_path, video) VALUES ('Bench Press', 'Make sure you have a spotter with you, do slow easy reps.', 'benchpress.png', 'insertVideohere');
-INSERT INTO gym_equipment (name, usage, photo_path, video) VALUES ('Bicep Curl Machine', 'Start with lower weights and do slow easy reps.', 'bicep.png', 'insertVideohere');
-INSERT INTO gym_equipment (name, usage, photo_path, video) VALUES ('Squat Rack', 'Do not over do it! Make sure you squat with the heels of your feet. Practise form before you attempt this beast!', 'squatrack.png', 'insertVideohere');
+INSERT INTO gym_equipment (name, usage, photo_path) VALUES ('Treadmill', 'Keep your head up. If you are new to the treadmill, you may be tempted to look at your feet as you run.', 'treadmill');
+INSERT INTO gym_equipment (name, usage, photo_path) VALUES ('Bench Press', 'Make sure you have a spotter with you, do slow easy reps.', 'benchpress');
+INSERT INTO gym_equipment (name, usage, photo_path) VALUES ('Bicep Curl Machine', 'Start with lower weights and do slow easy reps.', 'bicep');
+INSERT INTO gym_equipment (name, usage, photo_path) VALUES ('Squat Rack', 'Do not over do it! Make sure you squat with the heels of your feet. Practise form before you attempt this beast!', 'squatrack');
 INSERT INTO gym_equipment_usage (equipment_id,member_id, date_time, reps, weight) VALUES (2,99 ,'2022-04-14 10:35:33.000', 200, 450);
 COMMIT TRANSACTION;
