@@ -97,6 +97,7 @@ namespace WebApplication.Web.Controllers
             User currentUser = authProvider.GetCurrentUser();
             model.Member_id = currentUser.Id;
             model.Equipment_id = id;
+            model.Date_time = DateTime.Today;
             return View(model);
         }
 

@@ -6,22 +6,26 @@
 
 <h2>Check In or Check Out Gym Member</h2>
 
-<h4>Timelog</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
         <div class="form-group">
             <form asp-controller="MemberInfo" asp-action="EmployeeTimelog">
-                @*<label asp-for="MemberId">Select the Gym Member</label>*@
-                <select asp-for="MemberId" asp-items="Model.AllMembers">
+
+                <select class="form-control" asp-for="MemberId" asp-items="Model.AllMembers">
                     <option value="">Select a Gym Member</option>
-                </select><br />
+                </select>
+                <br />
+                
+               
                 <div class="form-group">
                     <input type="radio" asp-for="IsCheckedIn" value="false" />Check In<br />
                 </div>
                 <div class="from-group">
                     <input type="radio" asp-for="IsCheckedIn" value="true" />Check Out<br />
                 </div>
+                <br />
                 <div class="form-group">
                     <input type="submit" value="Submit" class="btn btn-default" />
                 </div>
