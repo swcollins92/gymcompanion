@@ -37,19 +37,21 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WorkoutGoals" class="control-label"></label>
-                <input asp-for="WorkoutGoals" class="form-control" />
-                <span asp-validation-for="WorkoutGoals" class="text-danger"></span>
+                <label asp-for="WorkoutGoals" class="control-label">Workout Goals</label>
+                <select asp-for="WorkoutGoals" asp-items="Model.WorkoutGoalsSelection" class="form-control">
+                    <option>--Select your Workout Goals--</option>
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="WorkoutProfile" class="control-label"></label>
-                <input asp-for="WorkoutProfile" class="form-control" />
-                <span asp-validation-for="WorkoutProfile" class="text-danger"></span>
+                <label asp-for="WorkoutProfile" class="control-label">Body Profile</label>
+                <select asp-for="WorkoutProfile" asp-items="Model.BodyProfile" class="form-control">
+                    <option>--Select your Body Profile--</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="PhotoPath"></label>
                 <select asp-for="PhotoPath" asp-items="Model.Avatars" class="form-control"></select>
-                
+
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

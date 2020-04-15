@@ -4,9 +4,8 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Profile</h2>
 
-<h4>EditViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -18,17 +17,15 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WorkoutGoals" class="control-label"></label>
-                <input asp-for="WorkoutGoals" class="form-control" />
-                <span asp-validation-for="WorkoutGoals" class="text-danger"></span>
+                <label asp-for="WorkoutGoals" class="control-label">Workout Goals</label>
+                <select asp-for="WorkoutGoals" asp-items="Model.WorkoutGoalsSelection" class="form-control"></select>
             </div>
             <div class="form-group">
-                <label asp-for="WorkoutProfile" class="control-label"></label>
-                <input asp-for="WorkoutProfile" class="form-control" />
-                <span asp-validation-for="WorkoutProfile" class="text-danger"></span>
+                <label asp-for="WorkoutProfile" class="control-label">Body Profile</label>
+                <select asp-for="WorkoutProfile" asp-items="Model.BodyProfile" class="form-control"></select>
             </div>
             <div class="form-group">
-                <label asp-for="PhotoPath" class="control-label"></label>
+                <label asp-for="PhotoPath" class="control-label">Profile Image</label>
                 <select asp-for="PhotoPath" asp-items="Model.Avatars" class="form-control"></select>
 
             </div>

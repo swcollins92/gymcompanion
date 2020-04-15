@@ -89,13 +89,15 @@ abbr[title] {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 40%;
 }
-.logo_pic{
-    height:50%;
+
+.logo_pic {
+    height: 50%;
     width: 65%;
     display: block;
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 b,
@@ -6049,6 +6051,7 @@ a.badge:focus {
     margin-bottom: 30px;
     color: inherit;
     background-color: #4e5d6c;
+
 }
 
     .jumbotron h1,

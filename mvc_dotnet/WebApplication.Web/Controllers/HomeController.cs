@@ -5,14 +5,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Web.Models;
+using WebApplication.Web.Models.Account;
 
 namespace WebApplication.Web.Controllers
 {
     public class HomeController : Controller
     {
         public IActionResult Index()
-        {            
-            return View();
+        {
+            RegisterViewModel model = new RegisterViewModel();
+            return View(model);
         }
 
         public IActionResult About()

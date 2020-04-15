@@ -33,5 +33,22 @@ namespace WebApplication.Web.Models
              new SelectListItem() {Text = "Deadpool", Value ="Deadpool"},
              new SelectListItem() {Text = "JoeExotic", Value ="JoeExotic"}
         };
+        public List<SelectListItem> BodyProfile = new List<SelectListItem>()
+        {
+             new SelectListItem() { Text = "Fit", Value = "Fit" },
+             new SelectListItem() { Text = "Slim", Value = "Slim" },
+             new SelectListItem() { Text = "Big", Value = "Big" },
+             new SelectListItem() { Text = "Husky", Value = "Husky" },
+             new SelectListItem() { Text = "Tall", Value = "Tall" },
+             new SelectListItem() { Text = "Short", Value = "Short" }
+        };
+        public List<SelectListItem> WorkoutGoalsSelection = new List<SelectListItem>()
+        {
+             new SelectListItem() { Text = "Lose Weight", Value = "Lose Weight" },
+             new SelectListItem() { Text = "Be Healthier", Value = "Be Healthier" },
+             new SelectListItem() { Text = "Relieve Stress", Value = "Relieve Stress" },
+             new SelectListItem() { Text = "Gain Muscle", Value = "Gain Muscle" },
+             new SelectListItem() { Text = "Be More Athletic", Value = "Be More Athletic" }
+        };
     }
 }
