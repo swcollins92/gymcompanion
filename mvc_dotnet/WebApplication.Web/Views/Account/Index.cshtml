@@ -29,8 +29,10 @@
 }
 @if (Model.Role == "Employee")
 {
-   
+
     <a asp-controller="MemberInfo" asp-action="EmployeeTimeLog" class="btn btn-primary btn-lg">CheckIn/CheckOut a Gym Member</a>
+    <a asp-controller="MemberInfo" asp-action="EmployeeWorkoutMetrics" class="btn btn-primary btn-lg">View Workout Metrics For a Member</a>
+    <a asp-controller="Gym" asp-action="ViewMachineMetrics" class="btn btn-primary btn-lg">View Machine Metrics</a>
 }
 
 @if (Model.Role == "Employee" || Model.Role == "Admin")

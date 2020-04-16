@@ -291,6 +291,51 @@ namespace WebApplication.Web.DAL
             }
         }
 
+        public List<MachineMetrics> GetAllMachineMetrics()
+        {
+            List<MachineMetrics> list = new List<MachineMetrics>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT MONTH(date_time) as month, YEAR(date_time) as year, " +
+                       "equipment_id, count(*) as times_used, gym_equipment.name " +
+                       "From gym_equipment_usage " +
+                       "INNER JOIN gym_equipment on gym_equipment.id = gym_equipment_usage.equipment_id " +
+                       "GROUP BY MONTH(date_time), YEAR(date_time), equipment_id, gym_equipment.name " +
+                       "ORDER BY times_used DESC", conn);
+                    
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        MachineMetrics metric = new MachineMetrics();
+                        metric = MapRowToMachineMetrics(reader);
+                        list.Add(metric);
+                    }
+
+                    return list;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+
+        private MachineMetrics MapRowToMachineMetrics(SqlDataReader reader)
+        {
+            return new MachineMetrics()
+            {
+                EquipmentId= Convert.ToInt32(reader["equipment_id"]),
+                EquipmentName = Convert.ToString(reader["name"]),
+                NumberOfTimeUsed = Convert.ToInt32(reader["times_used"]),
+                Month = Convert.ToInt32(reader["month"]),
+                Year = Convert.ToInt32(reader["year"])
+            };
+        }
 
         private GymEquipment MapRowToEquipment(SqlDataReader reader)
         {

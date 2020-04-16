@@ -113,7 +113,14 @@ namespace WebApplication.Web.Controllers
 
             return RedirectToAction(nameof(ViewEquipmentMember));
         }
-        //TODO: Session with edit equipment. 
-        //TODO: Also with users added in sql they do not show in view profile
+
+        [AuthorizationFilter("Employee")]
+        [HttpGet]
+        public IActionResult ViewMachineMetrics()
+        {
+            ViewMachineMetrics model = new ViewMachineMetrics();
+            model.AllMetrics = gymDAL.GetAllMachineMetrics();
+            return View(model);
+        }
     }
 }
