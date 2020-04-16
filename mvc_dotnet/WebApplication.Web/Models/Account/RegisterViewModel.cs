@@ -53,7 +53,8 @@ namespace WebApplication.Web.Models.Account
              new SelectListItem() { Text = "smiley face", Value = "smiley_face" },
              new SelectListItem() {Text = "Mike", Value = "Mike"},
              new SelectListItem() {Text = "Deadpool", Value ="Deadpool"},
-             new SelectListItem() {Text = "JoeExotic", Value ="JoeExotic"}
+             new SelectListItem() {Text = "JoeExotic", Value ="JoeExotic"},
+             new SelectListItem() {Text = "John Fulton", Value ="ripped_john"}
         };
         public List<SelectListItem> BodyProfile = new List<SelectListItem>()
         {
