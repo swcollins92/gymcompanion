@@ -6,40 +6,43 @@
 
 <h2>Welcome @Model.Username</h2>
 
-@if (Model.Role == "Admin")
-{
-
-    <a asp-controller="Account" asp-action="Register" class="btn btn-primary btn-lg">Register an Employee</a>
-}
-
-@if (Model.Role == "Employee" || Model.Role == "Member")
-{
-
-    <a asp-controller="Account" asp-action="Profile" class="btn btn-primary btn-lg">View your Profile</a>
-}
-
-@if (Model.Role == "Member")
-{
-
-    <a asp-controller="MemberInfo" asp-action="MemberTimeLog" class="btn btn-primary btn-lg">CheckIn/CheckOut</a>
-    <a asp-controller="Gym" asp-action="ViewEquipmentMember" class="btn btn-primary btn-lg">View/Use Gym Equipment</a>
-    <a asp-controller="MemberInfo" asp-action="MemberWorkoutMetrics" asp-route-id="@Model.Id" class="btn btn-primary btn-lg">View Workout Stats</a>
 
 
-}
-@if (Model.Role == "Employee")
-{
 
-    <a asp-controller="MemberInfo" asp-action="EmployeeTimeLog" class="btn btn-primary btn-lg">CheckIn/CheckOut a Gym Member</a>
-    <a asp-controller="MemberInfo" asp-action="EmployeeWorkoutMetrics" class="btn btn-primary btn-lg">View Workout Metrics For a Member</a>
-    <a asp-controller="Gym" asp-action="ViewMachineMetrics" class="btn btn-primary btn-lg">View Machine Metrics</a>
-}
+    @if (Model.Role == "Admin")
+    {
 
-@if (Model.Role == "Employee" || Model.Role == "Admin")
-{
+        <a asp-controller="Account" asp-action="Register" class="btn btn-primary btn-lg">Register an Employee</a>
+    }
 
-    <a asp-controller="Gym" asp-action="ViewEquipments" class="btn btn-primary btn-lg">View/Edit Gym Equipment</a>
-}
+    @if (Model.Role == "Employee" || Model.Role == "Member")
+    {
+
+        <a asp-controller="Account" asp-action="Profile" class="btn btn-primary btn-lg">View your Profile</a>
+    }
+
+    @if (Model.Role == "Member")
+    {
+
+        <a asp-controller="MemberInfo" asp-action="MemberTimeLog" class="btn btn-primary btn-lg">CheckIn/CheckOut</a>
+        <a asp-controller="Gym" asp-action="ViewEquipmentMember" class="btn btn-primary btn-lg">View/Use Gym Equipment</a>
+        <a asp-controller="MemberInfo" asp-action="MemberWorkoutMetrics" asp-route-id="@Model.Id" class="btn btn-primary btn-lg">View Workout Stats</a>
+
+
+    }
+    @if (Model.Role == "Employee")
+    {
+
+        <a asp-controller="MemberInfo" asp-action="EmployeeTimeLog" class="btn btn-primary btn-lg">CheckIn/CheckOut a Gym Member</a>
+        <a asp-controller="MemberInfo" asp-action="EmployeeWorkoutMetrics" class="btn btn-primary btn-lg">View Workout Metrics For a Member</a>
+        <a asp-controller="Gym" asp-action="ViewMachineMetrics" class="btn btn-primary btn-lg">View Machine Metrics</a>
+    }
+
+    @if (Model.Role == "Employee" || Model.Role == "Admin")
+    {
+
+        <a asp-controller="Gym" asp-action="ViewEquipments" class="btn btn-primary btn-lg">View/Edit Gym Equipment</a>
+    }
 
 
 

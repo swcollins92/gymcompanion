@@ -18,7 +18,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="WorkoutGoals" class="control-label">Workout Goals</label>
-                <select asp-for="WorkoutGoals" asp-items="Model.WorkoutGoalsSelection" class="form-control"></select>
+                <input asp-for="WorkoutGoals" class="form-control" />
+                <span asp-validation-for="WorkoutGoals" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="WorkoutProfile" class="control-label">Body Profile</label>
